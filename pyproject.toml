@@ -26,3 +26,4 @@ package-dir = {"" = "src"}
 
 [tool.setuptools.dynamic]
 version = {attr="pydom.version.version"}
+dependencies = {file="requirements.txt"}
