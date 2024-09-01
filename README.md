@@ -1,3 +1,3 @@
 # PyDOM
 
-See [Seamless](https://github.com/xpodev/seamless) for a more complete and up-to-date implementation of this idea.
+See [Seamless](https://seamless.rtfd.io) for a more complete and up-to-date implementation of this idea.
