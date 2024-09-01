@@ -1,13 +1,17 @@
 from typing import (
     Callable,
-    Concatenate,
-    ParamSpec,
     Any,
     TYPE_CHECKING,
+    Dict,
+    Tuple,
     TypeVar,
     Union,
     Optional,
+    Type,
+    List,
 )
+
+from typing_extensions import ParamSpec, TypeAlias, Concatenate
 
 from ..utils.injector import Injector
 
@@ -15,28 +19,30 @@ if TYPE_CHECKING:
     from ..rendering.tree.nodes.context_node import ContextNode
 
 T = TypeVar("T")
-
 P = ParamSpec("P")
-Feature = Callable[Concatenate["Context", P], Any]
 
-PropertyMatcher = Union[Callable[Concatenate[str, Any, ...], bool], str]
-PropertyTransformer = Callable[Concatenate[str, Any, "ContextNode", ...], None]
-PostRenderTransformer = Callable[Concatenate["ContextNode", ...], None]
+Feature: TypeAlias = "Callable[Concatenate[Context, P], Any]"
+
+PropertyMatcher: TypeAlias = "Union[Callable[Concatenate[str, Any, ...], bool], str]"
+PropertyTransformer: TypeAlias = (
+    "Callable[Concatenate[str, Any, ContextNode, ...], None]"
+)
+PostRenderTransformer: TypeAlias = "Callable[Concatenate[ContextNode, ...], None]"
 
 
 class Context:
     def __init__(self) -> None:
         self.injector = Injector()
-        self._prop_transformers: list[tuple[PropertyMatcher, PropertyTransformer]] = []
-        self._post_render_transformers: list[PostRenderTransformer] = []
-        self._features: dict[type, Any] = {}
+        self._prop_transformers: List[Tuple[PropertyMatcher, PropertyTransformer]] = []
+        self._post_render_transformers: List[PostRenderTransformer] = []
+        self._features: Dict[type, Any] = {}
 
     def add_feature(self, feature: Feature[P], *args: P.args, **kwargs: P.kwargs):
         result = feature(self, *args, **kwargs)
         if isinstance(feature, type):
             self._features[feature] = result
 
-    def get_feature(self, feature: type[T]) -> T:
+    def get_feature(self, feature: Type[T]) -> T:
         return self._features[feature]
 
     def add_prop_transformer(

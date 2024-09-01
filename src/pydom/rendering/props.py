@@ -1,11 +1,11 @@
 from html import escape
-from typing import Any, TYPE_CHECKING
+from typing import Any, TYPE_CHECKING, Dict
 
 from ..context import Context
 from ..errors import RenderError
 
 if TYPE_CHECKING:
-  from .tree.nodes.context_node import ContextNode
+    from .tree.nodes.context_node import ContextNode
 
 
 def transform_props(element: "ContextNode", *, context: "Context"):
@@ -30,7 +30,7 @@ def transform_props(element: "ContextNode", *, context: "Context"):
     return {key: value for key, value in element.props.items() if value is not None}
 
 
-def render_props(props: dict[str, Any]) -> str:
+def render_props(props: Dict[str, Any]) -> str:
     return " ".join(
         key if value is True else f'{key}="{escape(str(value))}"'
         for key, value in props.items()

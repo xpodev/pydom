@@ -1,6 +1,8 @@
 from inspect import signature
 from functools import wraps
-from typing import Type, TypeVar, Union, overload, Callable, TypeAlias
+from typing import Dict, Type, TypeVar, Union, overload, Callable
+
+from typing_extensions import TypeAlias
 
 T = TypeVar("T")
 
@@ -15,7 +17,7 @@ class Injector:
     """
 
     def __init__(self):
-        self.dependencies = dict[type, Callable]()
+        self.dependencies: Dict[type, Callable] = {}
 
     @overload
     def add(self, cls: Type[T], factory: Callable[[], T], /) -> None: ...

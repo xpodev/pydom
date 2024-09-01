@@ -1,4 +1,5 @@
-from typing import TypeVar, Generic, Unpack, Optional
+from typing import TypeVar, Generic, Optional
+from typing_extensions import Unpack
 
 from .utils.functions import to_iter
 

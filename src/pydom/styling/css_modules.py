@@ -3,7 +3,7 @@ import re
 
 from os import PathLike
 from pathlib import Path
-from typing import Union
+from typing import Union, Dict
 
 import cssutils
 
@@ -13,10 +13,10 @@ from ..utils.functions import short_uuid
 class CSSClass:
     def __init__(self, class_name: str):
         self.class_name = class_name
-        self.sub_rules: dict[str, dict[str, str]] = {}
+        self.sub_rules: Dict[str, Dict[str, str]] = {}
         self.uuid = short_uuid()
 
-    def add_rule(self, rule: str, properties: dict[str, str]):
+    def add_rule(self, rule: str, properties: Dict[str, str]):
         if rule not in self.sub_rules:
             self.sub_rules[rule] = {}
 
@@ -49,7 +49,7 @@ class CSSModule:
     def __init__(self, module_name):
         css = cssutils.parseFile(module_name)
         self.module_name = module_name
-        self.classes: dict[str, CSSClass] = {}
+        self.classes: Dict[str, CSSClass] = {}
         self.raw_css = ""
         for rule in css:
             if rule.type == rule.STYLE_RULE:
@@ -110,7 +110,7 @@ class CSSModule:
 class CSSModulesManager(type):
     def __init__(cls, name, bases, dct):
         super().__init__(name, bases, dct)
-        cls.modules: dict[str, CSSModule] = {}
+        cls.modules: Dict[str, CSSModule] = {}
         cls.folder: Path = Path.cwd()
 
     def module(cls, css_path: Union[PathLike, str]):

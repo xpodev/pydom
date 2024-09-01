@@ -1,7 +1,9 @@
+from typing import Union
+
 from ...context.context import PostRenderTransformer, get_context, Context
 
 
-def post_render_transformer(context: Context | None = None):
+def post_render_transformer(context: Union[Context, None] = None):
     """
     A decorator to register a post-render transformer.
 

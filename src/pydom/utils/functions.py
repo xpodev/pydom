@@ -1,6 +1,6 @@
 from string import ascii_letters
-from typing import TypeGuard
 from uuid import uuid4
+from typing_extensions import TypeGuard
 
 from ..types import Primitive
 
