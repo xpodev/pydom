@@ -1,9 +1,11 @@
 from ..context import Context
-from .transformers.class_transformer import class_transformer
-from .transformers.dash_transformer import dash_transformer
-from .transformers.html_events_transformer import html_events_transformer
-from .transformers.simple_transformer import simple_transformer
-from .transformers.style_transformer import style_transformer
+from .transformers import (
+    class_transformer,
+    dash_transformer,
+    html_events_transformer,
+    simple_transformer,
+    style_transformer,
+)
 
 
 def add_standard_features(ctx: "Context"):
@@ -13,3 +15,6 @@ def add_standard_features(ctx: "Context"):
     # Order matters
     ctx.add_prop_transformer(*html_events_transformer())
     ctx.add_prop_transformer(*dash_transformer())
+
+
+__all__ = ["add_standard_features"]
