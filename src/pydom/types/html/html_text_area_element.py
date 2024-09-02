@@ -6,7 +6,7 @@ class HTMLTextAreaElement(HTMLElementProps, total=False):
     auto_focus: str
     cols: str
     dirname: str
-    disabled: str
+    disabled: bool
     form: str
     max_length: str
     min_length: str
