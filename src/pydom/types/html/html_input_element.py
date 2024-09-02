@@ -9,7 +9,7 @@ class HTMLInputElement(HTMLElementProps, total=False):
     capture: str
     checked: str
     cross_origin: str
-    disabled: str
+    disabled: bool
     form: str
     form_action: str
     form_enctype: str

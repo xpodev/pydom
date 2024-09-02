@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, List
 
 from .tree_node import TreeNode
 
@@ -8,7 +8,7 @@ class ElementNode(TreeNode):
         self,
         tag_name: str,
         props: Optional[dict] = None,
-        children: Optional[list[TreeNode]] = None,
+        children: Optional[List[TreeNode]] = None,
         parent: Optional["ElementNode"] = None,
     ):
         super().__init__(parent=parent)

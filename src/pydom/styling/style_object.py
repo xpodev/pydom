@@ -1,4 +1,5 @@
-from typing import Generic, TypeVar, Unpack, Union
+from typing import Dict, Generic, TypeVar, Union
+from typing_extensions import Unpack
 from ..types.styling.css_properties import CSSProperties
 
 
@@ -20,7 +21,7 @@ class StyleObject:
         *styles: Union["StyleObject", CSSProperties],
         **kwargs: Unpack[CSSProperties],
     ):
-        self.style: dict[str, object] = {}
+        self.style: Dict[str, object] = {}
         for style in styles:
             if isinstance(style, StyleObject):
                 style = style.style

@@ -1,9 +1,9 @@
-from typing import Any, Callable
+from typing import Any, Callable, Union, Optional
 from ...context.context import PropertyTransformer, Context, get_context
 
 
 def property_transformer(
-    matcher: Callable[[str, Any], bool] | str, context: Context | None = None
+    matcher: Union[Callable[[str, Any], bool], str], context: Optional[Context] = None
 ):
     """
     A decorator to register a property transformer.

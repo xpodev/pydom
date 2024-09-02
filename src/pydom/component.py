@@ -1,10 +1,11 @@
 from abc import abstractmethod, ABC
+from typing import Tuple
 
 from .types.rendering import RenderResult, ChildType
 
 
 class Component(ABC):
-    children: tuple["ChildType", ...]
+    children: Tuple["ChildType", ...]
 
     def __init__(self, *children: "ChildType") -> None:
         self.children = children

@@ -1,4 +1,4 @@
-from typing import Optional, Union
+from typing import List, Optional, Union
 
 from ....errors import RenderError
 from .element_node import ElementNode
@@ -28,8 +28,8 @@ class ContextNode:
         return ContextNode(node, context=self.context) if node else None
 
     def get_all_by_tag(self, tag: str):
-        def _get_all_by_tag(node: ElementNode) -> list[ContextNode]:
-            result: list[ContextNode] = []
+        def _get_all_by_tag(node: ElementNode) -> List[ContextNode]:
+            result: List[ContextNode] = []
             if node.tag_name == tag:
                 result.append(ContextNode(node, context=self.context))
             if node.children is not None:

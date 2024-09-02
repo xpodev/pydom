@@ -1,6 +1,9 @@
+from contextlib import contextmanager
 from inspect import signature
 from functools import wraps
-from typing import Type, TypeVar, Union, overload, Callable, TypeAlias
+from typing import Dict, Type, TypeVar, Union, overload, Callable
+
+from typing_extensions import TypeAlias
 
 T = TypeVar("T")
 
@@ -15,7 +18,7 @@ class Injector:
     """
 
     def __init__(self):
-        self.dependencies = dict[type, Callable]()
+        self.dependencies: Dict[type, Callable] = {}
 
     @overload
     def add(self, cls: Type[T], factory: Callable[[], T], /) -> None: ...
@@ -50,3 +53,15 @@ class Injector:
                 keyword_args[name] = self.dependencies[parameter.annotation]()
 
         return keyword_args
+
+    @contextmanager
+    def scope(self, dependencies: dict[type, InjectFactory]):
+        original_dependencies = self.dependencies.copy()
+        self.dependencies.update(dependencies)
+
+        try:
+            yield
+        finally:
+            self.dependencies = original_dependencies
+
+""
