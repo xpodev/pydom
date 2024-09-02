@@ -7,14 +7,14 @@ from typing import Union, Dict
 
 import cssutils
 
-from ..utils.functions import short_uuid
+from ..utils.functions import random_string
 
 
 class CSSClass:
     def __init__(self, class_name: str):
         self.class_name = class_name
         self.sub_rules: Dict[str, Dict[str, str]] = {}
-        self.uuid = short_uuid()
+        self.uuid = random_string()
 
     def add_rule(self, rule: str, properties: Dict[str, str]):
         if rule not in self.sub_rules:

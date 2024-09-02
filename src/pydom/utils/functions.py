@@ -7,17 +7,11 @@ from ..types import Primitive
 ascii_length = len(ascii_letters)
 
 
-def short_uuid(length=12):
-    original_uuid = uuid4()
-    hex_string = original_uuid.hex
-    base62_uuid = ""
-    for i in range(0, len(hex_string), 2):
-        hex_byte = int(hex_string[i : i + 2], 16)
-        base62_uuid += ascii_letters[hex_byte % ascii_length]
-
-    short_uuid = base62_uuid[:length]
-
-    return short_uuid
+def random_string(length=12):
+    return "".join(
+        ascii_letters[byte % ascii_length]
+        for byte in b"".join(uuid4().bytes for _ in range(length // 16 + 1))
+    )[:length]
 
 
 def to_iter(value):
