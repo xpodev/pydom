@@ -21,13 +21,14 @@ if TYPE_CHECKING:
 T = TypeVar("T")
 P = ParamSpec("P")
 
-Feature: TypeAlias = "Callable[Concatenate[Context, P], Any]"
+Feature: TypeAlias = Callable[Concatenate["Context", P], Any]
 
-PropertyMatcher: TypeAlias = "Union[Callable[Concatenate[str, Any, ...], bool], str]"
-PropertyTransformer: TypeAlias = (
-    "Callable[Concatenate[str, Any, ContextNode, ...], None]"
-)
-PostRenderTransformer: TypeAlias = "Callable[Concatenate[ContextNode, ...], None]"
+PropertyMatcher: TypeAlias = Union[Callable[Concatenate[str, Any, ...], bool], str]
+PropertyTransformer: TypeAlias = Callable[
+    Concatenate[str, Any, "ContextNode", ...], None
+]
+
+PostRenderTransformer: TypeAlias = Callable[Concatenate["ContextNode", ...], None]
 
 
 class Context:
