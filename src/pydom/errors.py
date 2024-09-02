@@ -1,6 +1,6 @@
 class Error(Exception):
     """
-    Base class for all seamless exceptions.
+    Base class for all pydom exceptions.
     """
 
     ...
