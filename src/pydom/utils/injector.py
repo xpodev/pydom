@@ -1,3 +1,4 @@
+from contextlib import contextmanager
 from inspect import signature
 from functools import wraps
 from typing import Dict, Type, TypeVar, Union, overload, Callable
@@ -52,3 +53,15 @@ class Injector:
                 keyword_args[name] = self.dependencies[parameter.annotation]()
 
         return keyword_args
+
+    @contextmanager
+    def scope(self, dependencies: dict[type, InjectFactory]):
+        original_dependencies = self.dependencies.copy()
+        self.dependencies.update(dependencies)
+
+        try:
+            yield
+        finally:
+            self.dependencies = original_dependencies
+
+""
