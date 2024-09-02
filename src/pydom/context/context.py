@@ -44,7 +44,14 @@ class Context:
             self._features[feature] = result
 
     def get_feature(self, feature: Type[T]) -> T:
-        return self._features[feature]
+        try:
+            return self._features[feature]
+        except KeyError:
+            for cls in self._features:
+                if issubclass(cls, feature):
+                    return self._features[cls]
+
+            raise
 
     def add_prop_transformer(
         self, matcher: PropertyMatcher, transformer: PropertyTransformer
