@@ -1,4 +1,4 @@
-from typing import Unpack
+from typing_extensions import Unpack
 
 from ..element import Element
 from ..types.html import HTMLObjectElement

@@ -1,4 +1,5 @@
-from typing import Collection, Literal, TypeAlias, TYPE_CHECKING, Union
+from typing import Collection, Literal, TYPE_CHECKING, Union
+from typing_extensions import TypeAlias
 
 if TYPE_CHECKING:
     from ..component import Component

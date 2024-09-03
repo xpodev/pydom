@@ -3,7 +3,7 @@ from pydom.types.html.html_element_props import HTMLElementProps
 
 class HTMLButtonElement(HTMLElementProps, total=False):
     auto_focus: str
-    disabled: str
+    disabled: bool
     form: str
     form_action: str
     form_enctype: str

@@ -11,7 +11,7 @@ class HTMLElement(TypedDict, total=False, closed=False):
     auto_capitalize: str
     class_name: Union[str, Iterable[str]]
     content_editable: str
-    # data: dict[str, str]  # add this if needed in the future
+    # data: Dict[str, str]  # add this if needed in the future
     dir: Literal["ltr", "rtl", "auto"]
     draggable: str
     hidden: str
