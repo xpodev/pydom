@@ -55,7 +55,7 @@ class Injector:
         return keyword_args
 
     @contextmanager
-    def scope(self, dependencies: dict[type, InjectFactory]):
+    def scope(self, dependencies: Dict[type, InjectFactory]):
         original_dependencies = self.dependencies.copy()
         self.dependencies.update(dependencies)
 
