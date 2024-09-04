@@ -23,12 +23,12 @@ P = ParamSpec("P")
 
 Feature: TypeAlias = Callable[Concatenate["Context", P], Any]
 
-PropertyMatcher: TypeAlias = Union[Callable[Concatenate[str, Any, ...], bool], str]
+PropertyMatcher: TypeAlias = Union[Callable[Concatenate[str, Any, P], bool], str]
 PropertyTransformer: TypeAlias = Callable[
-    Concatenate[str, Any, "ContextNode", ...], None
+    Concatenate[str, Any, "ContextNode", P], None
 ]
 
-PostRenderTransformer: TypeAlias = Callable[Concatenate["ContextNode", ...], None]
+PostRenderTransformer: TypeAlias = Callable[Concatenate["ContextNode", P], None]
 
 
 class Context:
