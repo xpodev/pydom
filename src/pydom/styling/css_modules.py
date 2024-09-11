@@ -68,11 +68,7 @@ class CSSModule:
                 }
 
                 base_name = first_selector.seq[0].value.removeprefix(".")
-                css_class = (
-                    self.classes[base_name]
-                    if base_name in self.classes
-                    else CSSClass(base_name)
-                )
+                css_class = self.classes.get(base_name, CSSClass(base_name))
                 for selector in selectors:
                     css_class.add_rule(
                         selector.selectorText.replace(f".{base_name}", ""), style_dict
