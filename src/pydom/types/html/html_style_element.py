@@ -1,7 +1,8 @@
+from typing import Optional
 from pydom.types.html.html_element_props import HTMLElementProps
 
 
 class HTMLStyleElement(HTMLElementProps, total=False):
-    media: str
-    nonce: str
-    scoped: str
+    media: Optional[str]
+    nonce: Optional[str]
+    scoped: Optional[str]

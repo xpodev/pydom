@@ -1,15 +1,16 @@
+from typing import Optional
 from pydom.types.html.html_element_props import HTMLElementProps
 
 
 class HTMLButtonElement(HTMLElementProps, total=False):
-    auto_focus: str
-    disabled: bool
-    form: str
-    form_action: str
-    form_enctype: str
-    form_method: str
-    form_no_validate: str
-    form_target: str
-    name: str
-    type: str
-    value: str
+    auto_focus: Optional[str]
+    disabled: Optional[bool]
+    form: Optional[str]
+    form_action: Optional[str]
+    form_enctype: Optional[str]
+    form_method: Optional[str]
+    form_no_validate: Optional[str]
+    form_target: Optional[str]
+    name: Optional[str]
+    type: Optional[str]
+    value: Optional[str]

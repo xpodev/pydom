@@ -1,6 +1,7 @@
+from typing import Optional
 from pydom.types.html.html_element_props import HTMLElementProps
 
 
 class HTMLCanvasElement(HTMLElementProps, total=False):
-    height: str
-    width: str
+    height: Optional[str]
+    width: Optional[str]

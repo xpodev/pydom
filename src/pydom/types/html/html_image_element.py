@@ -1,18 +1,19 @@
+from typing import Optional
 from pydom.types.html.html_element_props import HTMLElementProps
 
 
 class HTMLImageElement(HTMLElementProps, total=False):
-    alt: str
-    cross_origin: str
-    decoding: str
-    height: str
-    importance: str
-    intrinsicsize: str
-    ismap: str
-    loading: str
-    referrer_policy: str
-    sizes: str
-    src: str
-    srcset: str
-    usemap: str
-    width: str
+    alt: Optional[str]
+    cross_origin: Optional[str]
+    decoding: Optional[str]
+    height: Optional[str]
+    importance: Optional[str]
+    intrinsicsize: Optional[str]
+    ismap: Optional[str]
+    loading: Optional[str]
+    referrer_policy: Optional[str]
+    sizes: Optional[str]
+    src: Optional[str]
+    srcset: Optional[str]
+    usemap: Optional[str]
+    width: Optional[str]

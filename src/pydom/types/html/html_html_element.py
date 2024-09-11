@@ -1,6 +1,7 @@
+from typing import Optional
 from pydom.types.html.html_element_props import HTMLElementProps
 
 
 class HTMLHtmlElement(HTMLElementProps, total=False):
-    version: str
-    xmlns: str
+    version: Optional[str]
+    xmlns: Optional[str]

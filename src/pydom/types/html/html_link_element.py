@@ -1,18 +1,18 @@
-from typing import Literal
+from typing import Literal, Optional
 from pydom.types.html.html_element_props import HTMLElementProps
 
 
 class HTMLLinkElement(HTMLElementProps, total=False):
-    html_as: str
-    cross_origin: str
-    disabled: str
-    fetch_priority: Literal["high", "low", "auto"]
-    href: str
-    hreflang: str
-    image_sizes: str
-    integrity: str
-    media: str
-    referrer_policy: str
-    rel: str
-    sizes: str
-    type: str
+    html_as: Optional[str]
+    cross_origin: Optional[str]
+    disabled: Optional[str]
+    fetch_priority: Optional[Literal["high", "low", "auto"]]
+    href: Optional[str]
+    hreflang: Optional[str]
+    image_sizes: Optional[str]
+    integrity: Optional[str]
+    media: Optional[str]
+    referrer_policy: Optional[str]
+    rel: Optional[str]
+    sizes: Optional[str]
+    type: Optional[str]

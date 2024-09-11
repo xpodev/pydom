@@ -1,8 +1,9 @@
+from typing import Optional
 from pydom.types.html.html_element_props import HTMLElementProps
 
 
 class HTMLOptionElement(HTMLElementProps, total=False):
-    disabled: bool
-    label: str
-    selected: str
-    value: str
+    disabled: Optional[bool]
+    label: Optional[str]
+    selected: Optional[str]
+    value: Optional[str]

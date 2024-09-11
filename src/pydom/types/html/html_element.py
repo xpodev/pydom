@@ -1,4 +1,4 @@
-from typing import TYPE_CHECKING, Iterable, Union, Literal
+from typing import TYPE_CHECKING, Iterable, Union, Literal, Optional
 
 from typing_extensions import TypedDict
 
@@ -7,20 +7,20 @@ if TYPE_CHECKING:
 
 
 class HTMLElement(TypedDict, total=False, closed=False):
-    access_key: str
-    auto_capitalize: str
-    class_name: Union[str, Iterable[str]]
-    content_editable: str
+    access_key: Optional[str]
+    auto_capitalize: Optional[str]
+    class_name: Optional[Union[str, Iterable[str]]]
+    content_editable: Optional[str]
     # data: Dict[str, str]  # add this if needed in the future
-    dir: Literal["ltr", "rtl", "auto"]
-    draggable: str
-    hidden: str
-    id: str
-    input_mode: str
-    lang: str
-    role: str
-    spell_check: str
-    style: Union[str, "StyleObject"]
-    tab_index: str
-    title: str
-    translate: str
+    dir: Optional[Literal["ltr", "rtl", "auto"]]
+    draggable: Optional[str]
+    hidden: Optional[str]
+    id: Optional[str]
+    input_mode: Optional[str]
+    lang: Optional[str]
+    role: Optional[str]
+    spell_check: Optional[str]
+    style: Optional[Union[str, "StyleObject"]]
+    tab_index: Optional[str]
+    title: Optional[str]
+    translate: Optional[str]

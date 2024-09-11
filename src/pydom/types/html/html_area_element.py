@@ -1,14 +1,15 @@
+from typing import Optional
 from pydom.types.html.html_element_props import HTMLElementProps
 
 
 class HTMLAreaElement(HTMLElementProps, total=False):
-    alt: str
-    coords: str
-    download: str
-    href: str
-    href_lang: str
-    ping: str
-    referrer_policy: str
-    rel: str
-    shape: str
-    target: str
+    alt: Optional[str]
+    coords: Optional[str]
+    download: Optional[str]
+    href: Optional[str]
+    href_lang: Optional[str]
+    ping: Optional[str]
+    referrer_policy: Optional[str]
+    rel: Optional[str]
+    shape: Optional[str]
+    target: Optional[str]

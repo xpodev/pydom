@@ -1,12 +1,13 @@
+from typing import Optional
 from pydom.types.html.html_element_props import HTMLElementProps
 
 
 class HTMLFormElement(HTMLElementProps, total=False):
-    accept_charset: str
-    action: str
-    auto_complete: str
-    enctype: str
-    method: str
-    name: str
-    no_validate: str
-    target: str
+    accept_charset: Optional[str]
+    action: Optional[str]
+    auto_complete: Optional[str]
+    enctype: Optional[str]
+    method: Optional[str]
+    name: Optional[str]
+    no_validate: Optional[str]
+    target: Optional[str]

@@ -1,12 +1,13 @@
+from typing import Optional
 from pydom.types.html.html_element_props import HTMLElementProps
 
 
 class HTMLAnchorElement(HTMLElementProps, total=False):
-    download: str
-    href: str
-    href_lang: str
-    ping: str
-    referrer_policy: str
-    rel: str
-    target: str
-    type: str
+    download: Optional[str]
+    href: Optional[str]
+    href_lang: Optional[str]
+    ping: Optional[str]
+    referrer_policy: Optional[str]
+    rel: Optional[str]
+    target: Optional[str]
+    type: Optional[str]
