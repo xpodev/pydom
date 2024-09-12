@@ -27,13 +27,7 @@ def transform_props(element: "ContextNode", *, context: "Context"):
                 f"Invalid matcher: {matcher} must be a callable or a string."
             )
 
-    element.props.update(
-        {
-            key: value
-            for key, value in element.props.items()
-            if value not in (False, None)
-        }
-    )
+    element.props.update(element.props)
 
 
 def render_props(props: Dict[str, Any]) -> str:
