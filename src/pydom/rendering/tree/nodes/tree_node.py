@@ -4,5 +4,5 @@ if TYPE_CHECKING:
   from .element_node import ElementNode
 
 class TreeNode:
-    def __init__(self, parent: Optional["ElementNode"] = None):
+    def __init__(self, *, parent: Optional["ElementNode"] = None):
         self.parent = parent

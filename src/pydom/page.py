@@ -66,7 +66,7 @@ class Page(Component):
 
     def render(self):
         return Fragment(
-            "<!DOCTYPE html>",
+            Fragment(dangerously_set_inner_html={"__html": "<!DOCTYPE html>"}),
             Html(**self._html_props)(
                 Head(**self._head_props)(*to_iter(self.head())),
                 Body(**self._body_props)(*to_iter(self.body())),

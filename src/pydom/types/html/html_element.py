@@ -1,4 +1,4 @@
-from typing import TYPE_CHECKING, Iterable, Union, Literal, Optional
+from typing import TYPE_CHECKING, Dict, Iterable, Union, Literal, Optional
 
 from typing_extensions import TypedDict
 
@@ -11,6 +11,7 @@ class HTMLElement(TypedDict, total=False, closed=False):
     auto_capitalize: Optional[str]
     class_name: Optional[Union[str, Iterable[str]]]
     content_editable: Optional[str]
+    dangerously_set_inner_html: Optional[Dict[Literal["__html"], str]]
     # data: Dict[str, str]  # add this if needed in the future
     dir: Optional[Literal["ltr", "rtl", "auto"]]
     draggable: Optional[str]
