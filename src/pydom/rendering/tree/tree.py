@@ -1,3 +1,4 @@
+from html import escape
 from typing import Union
 
 from ...component import Component
@@ -18,7 +19,7 @@ def build_raw_tree(
         renderable = renderable.render()
 
     if is_primitive(renderable):
-        return TextNode(renderable)
+        return TextNode(escape(str(renderable)) if renderable is not None else "")
 
     if not isinstance(renderable, Element):
         raise RenderError(f"Invalid renderable type: {type(renderable)}")
