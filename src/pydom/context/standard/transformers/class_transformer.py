@@ -3,10 +3,6 @@ def class_transformer():
         return key == "class_name"
 
     def transformer(_, class_name, element):
-        if not class_name:
-            del element.props["class_name"]
-            return
-
         if not isinstance(class_name, str):
             class_name = " ".join(class_name)
 
