@@ -1,12 +1,13 @@
-def class_transformer():
-    def matcher(key, _):
-        return key == "class_name"
+from ...transformers import PropertyTransformer
 
-    def transformer(_, class_name, element):
-        if not isinstance(class_name, str):
-            class_name = " ".join(class_name)
 
-        element.props["class"] = " ".join(str(class_name).split())
+class ClassTransformer(PropertyTransformer):
+    def match(self, prop_name, _) -> bool:
+        return prop_name == "class_name"
+
+    def transform(self, _, prop_value, element):
+        if not isinstance(prop_value, str):
+            prop_value = " ".join(prop_value)
+
+        element.props["class"] = " ".join(str(prop_value).split()).strip()
         del element.props["class_name"]
-
-    return matcher, transformer

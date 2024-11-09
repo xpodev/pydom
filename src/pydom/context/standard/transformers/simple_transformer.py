@@ -1,3 +1,5 @@
+from ...transformers import PropertyTransformer
+
 _SIMPLE_TRANSFORMERS = {
     "html_for": "for",
     "accept_charset": "accept-charset",
@@ -13,12 +15,10 @@ _SIMPLE_TRANSFORMERS = {
 }
 
 
-def simple_transformer():
-    def matcher(key: str, _):
-        return key in _SIMPLE_TRANSFORMERS
+class SimpleTransformer(PropertyTransformer):
+    def match(self, prop_name, _) -> bool:
+        return prop_name in _SIMPLE_TRANSFORMERS
 
-    def transformer(key: str, value, element):
-        element.props[_SIMPLE_TRANSFORMERS[key]] = value
-        del element.props[key]
-
-    return matcher, transformer
+    def transform(self, prop_name, _, element):
+        element.props[_SIMPLE_TRANSFORMERS[prop_name]] = _
+        del element.props[prop_name]

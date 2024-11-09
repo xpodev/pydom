@@ -1,10 +1,11 @@
-def html_events_transformer():
-    def matcher(key: str, value):
-        return key.startswith("on_") and isinstance(value, str)
+from ...transformers import PropertyTransformer
 
-    def transformer(key: str, value, element):       
-        event_name = key.replace("_", "").lower()
-        element.props[event_name] = value
-        del element.props[key]
 
-    return matcher, transformer
+class HTMLEventsTransformer(PropertyTransformer):
+    def match(self, prop_name, prop_value) -> bool:
+        return prop_name.startswith("on_") and isinstance(prop_value, str)
+
+    def transform(self, prop_name, prop_value, element):
+        event_name = prop_name.replace("_", "").lower()
+        element.props[event_name] = prop_value
+        del element.props[prop_name]
