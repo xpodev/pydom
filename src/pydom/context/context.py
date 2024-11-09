@@ -24,16 +24,14 @@ P = ParamSpec("P")
 Feature: TypeAlias = Callable[Concatenate["Context", P], Any]
 
 PropertyMatcher: TypeAlias = Union[Callable[Concatenate[str, Any, P], bool], str]
-PropertyTransformer: TypeAlias = Callable[
-    Concatenate[str, Any, "ContextNode", P], None
-]
+PropertyTransformer: TypeAlias = Callable[Concatenate[str, Any, "ContextNode", P], None]
 
 PostRenderTransformer: TypeAlias = Callable[Concatenate["ContextNode", P], None]
 
 
 class Context:
     def __init__(self) -> None:
-        self.injector = Injector()
+        self.injector = Injector({Context: self})
         self._prop_transformers: List[Tuple[PropertyMatcher, PropertyTransformer]] = []
         self._post_render_transformers: List[PostRenderTransformer] = []
         self._features: Dict[type, Any] = {}
