@@ -1,5 +1,5 @@
 from contextlib import contextmanager
-from inspect import signature
+from inspect import signature, iscoroutinefunction
 from functools import wraps
 from typing import Dict, Type, TypeVar, Union, overload, Callable
 
@@ -31,10 +31,19 @@ class Injector:
         )
 
     def inject(self, callback: Callable) -> Callable:
-        @wraps(callback)
-        def wrapper(*args, **kwargs):
-            keyword_args = self.inject_params(callback)
-            return callback(*args, **keyword_args, **kwargs)
+        if iscoroutinefunction(callback):
+
+            @wraps(callback)
+            async def wrapper(*args, **kwargs):  # type: ignore
+                keyword_args = self.inject_params(callback)
+                return await callback(*args, **keyword_args, **kwargs)
+
+        else:
+
+            @wraps(callback)
+            def wrapper(*args, **kwargs):
+                keyword_args = self.inject_params(callback)
+                return callback(*args, **keyword_args, **kwargs)
 
         return wrapper
 
