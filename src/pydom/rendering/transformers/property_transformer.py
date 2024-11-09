@@ -1,5 +1,5 @@
 from typing import Any, Callable, Union, Optional
-from ...context.context import PropertyTransformer, Context, get_context
+from ...context.context import PropertyTransformerFunction, Context, get_context
 
 
 def property_transformer(
@@ -32,7 +32,7 @@ def property_transformer(
     """
     context = get_context(context)
 
-    def decorator(func: PropertyTransformer):
+    def decorator(func: PropertyTransformerFunction):
         context.add_prop_transformer(matcher, func)
         return func
 

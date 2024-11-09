@@ -1,6 +1,6 @@
 from typing import Union
 
-from ...context.context import PostRenderTransformer, get_context, Context
+from ...context.context import PostRenderTransformerFunction, get_context, Context
 
 
 def post_render_transformer(context: Union[Context, None] = None):
@@ -28,7 +28,7 @@ def post_render_transformer(context: Union[Context, None] = None):
     """
     context = get_context(context)
 
-    def decorator(func: PostRenderTransformer):
+    def decorator(func: PostRenderTransformerFunction):
         context.add_post_render_transformer(func)
         return func
 
