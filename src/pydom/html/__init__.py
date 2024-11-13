@@ -95,7 +95,6 @@ from .style import Style
 from .sub import Sub
 from .summary import Summary
 from .sup import Sup
-from .svg import Svg
 from .table import Table
 from .tbody import TBody
 from .td import Td
@@ -212,7 +211,6 @@ __all__ = [
 	"Sub",
 	"Summary",
 	"Sup",
-	"Svg",
 	"Table",
 	"TBody",
 	"Td",
