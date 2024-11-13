@@ -1,7 +1,6 @@
 from typing import (
     Callable,
     Any,
-    TYPE_CHECKING,
     Dict,
     Tuple,
     TypeVar,
@@ -9,33 +8,34 @@ from typing import (
     Optional,
     Type,
     List,
+    overload,
 )
 
 from typing_extensions import ParamSpec, TypeAlias, Concatenate
 
-from ..utils.injector import Injector
+from .transformers import (
+    PostRenderTransformer,
+    PostRenderTransformerFunction,
+    PropertyTransformer,
+    PropertyMatcherFunction,
+    PropertyTransformerFunction,
+)
 
-if TYPE_CHECKING:
-    from ..rendering.tree.nodes.context_node import ContextNode
+from ..utils.injector import Injector
 
 T = TypeVar("T")
 P = ParamSpec("P")
 
 Feature: TypeAlias = Callable[Concatenate["Context", P], Any]
 
-PropertyMatcher: TypeAlias = Union[Callable[Concatenate[str, Any, P], bool], str]
-PropertyTransformer: TypeAlias = Callable[
-    Concatenate[str, Any, "ContextNode", P], None
-]
-
-PostRenderTransformer: TypeAlias = Callable[Concatenate["ContextNode", P], None]
-
 
 class Context:
     def __init__(self) -> None:
-        self.injector = Injector()
-        self._prop_transformers: List[Tuple[PropertyMatcher, PropertyTransformer]] = []
-        self._post_render_transformers: List[PostRenderTransformer] = []
+        self.injector = Injector({Context: self})
+        self._prop_transformers: List[
+            Tuple[PropertyMatcherFunction, PropertyTransformerFunction]
+        ] = []
+        self._post_render_transformers: List[PostRenderTransformerFunction] = []
         self._features: Dict[type, Any] = {}
 
     def add_feature(self, feature: Feature[P], *args: P.args, **kwargs: P.kwargs):
@@ -53,13 +53,50 @@ class Context:
 
             raise
 
+    @overload
     def add_prop_transformer(
-        self, matcher: PropertyMatcher, transformer: PropertyTransformer
-    ):
-        self._prop_transformers.append((matcher, self.inject(transformer)))
+        self,
+        transformer: PropertyTransformer,
+        /,
+        *,
+        before: Optional[List[Type[PropertyTransformer]]] = None,
+        after: Optional[List[Type[PropertyTransformer]]] = None,
+    ) -> None: ...
+    @overload
+    def add_prop_transformer(
+        self,
+        matcher: PropertyMatcherFunction,
+        transformer: PropertyTransformerFunction,
+        /,
+        *,
+        before: Optional[List[Type[PropertyTransformer]]] = None,
+        after: Optional[List[Type[PropertyTransformer]]] = None,
+    ) -> None: ...
 
-    def add_post_render_transformer(self, transformer: PostRenderTransformer):
-        self._post_render_transformers.append(self.inject(transformer))
+    def add_prop_transformer(
+        self,
+        matcher: Union[PropertyMatcherFunction, PropertyTransformer],
+        transformer: Optional[PropertyTransformerFunction] = None,
+        /,
+        *,
+        before: Optional[List[Type[PropertyTransformer]]] = None,
+        after: Optional[List[Type[PropertyTransformer]]] = None,
+    ):
+        if isinstance(matcher, PropertyTransformer):
+            self._prop_transformers.append(
+                (matcher.match, self.inject(matcher.transform))
+            )
+        else:
+            assert transformer is not None
+            self._prop_transformers.append((matcher, self.inject(transformer)))
+
+    def add_post_render_transformer(
+        self, transformer: Union[PostRenderTransformerFunction, PostRenderTransformer]
+    ):
+        if isinstance(transformer, PostRenderTransformer):
+            self._post_render_transformers.append(self.inject(transformer.transform))
+        else:
+            self._post_render_transformers.append(self.inject(transformer))
 
     @property
     def prop_transformers(self):

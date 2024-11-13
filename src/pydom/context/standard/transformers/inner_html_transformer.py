@@ -1,11 +1,13 @@
-from pydom.rendering.tree.nodes import TextNode, ContextNode
+from pydom.rendering.tree.nodes import TextNode
+
+from ...transformers import PropertyTransformer
 
 
-def inner_html_transformer():
-    def matcher(key, _):
-        return key == "dangerously_set_inner_html"
+class InnerHTMLTransformer(PropertyTransformer):
+    def match(self, prop_name: str, _) -> bool:
+        return prop_name == "dangerously_set_inner_html"
 
-    def transformer(_, inner_html, element: ContextNode):
+    def transform(self, _, inner_html, element):
         del element.props["dangerously_set_inner_html"]
 
         if element.children is None:
@@ -13,5 +15,3 @@ def inner_html_transformer():
 
         element.children.clear()
         element.children.append(TextNode(inner_html["__html"], parent=element.node))
-
-    return matcher, transformer
