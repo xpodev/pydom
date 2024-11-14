@@ -36,6 +36,9 @@ class PropertyTransformer(ABC):
     def transform(self, prop_name: str, prop_value, element: "ContextNode", /):
         pass
 
+    def __iter__(self):
+        return iter((self.match, self.transform))
+
 
 class PostRenderTransformer(ABC):
     @abstractmethod
