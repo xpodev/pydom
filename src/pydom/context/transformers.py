@@ -1,9 +1,9 @@
 from abc import ABC, abstractmethod
-
 from typing import (
     Callable,
     Any,
     TYPE_CHECKING,
+    Tuple,
     TypeVar,
     Union,
 )
@@ -26,15 +26,29 @@ PropertyTransformerFunction: TypeAlias = Callable[
 
 PostRenderTransformerFunction: TypeAlias = Callable[Concatenate["ContextNode", P], None]
 
+if TYPE_CHECKING:
 
-class PropertyTransformer(ABC):
-    @abstractmethod
-    def match(self, prop_name: str, prop_value, /) -> bool:
-        pass
+    class PropertyTransformer(
+        ABC, Tuple[PropertyMatcherFunction, PropertyTransformerFunction]
+    ):
+        @abstractmethod
+        def match(self, prop_name: str, prop_value, /) -> bool: ...
+        @abstractmethod
+        def transform(self, prop_name: str, prop_value, element: "ContextNode", /): ...
 
-    @abstractmethod
-    def transform(self, prop_name: str, prop_value, element: "ContextNode", /):
-        pass
+else:
+
+    class PropertyTransformer(ABC):
+        @abstractmethod
+        def match(self, prop_name: str, prop_value, /) -> bool:
+            pass
+
+        @abstractmethod
+        def transform(self, prop_name: str, prop_value, element: "ContextNode", /):
+            pass
+
+        def __iter__(self):
+            return iter((self.match, self.transform))
 
 
 class PostRenderTransformer(ABC):
