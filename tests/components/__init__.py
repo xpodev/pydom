@@ -46,7 +46,9 @@ class App(Component):
         return Card(
             CardTitle("Card title"),
             Hr(),
-            Div("Card content"),
+            Div("Card content")(
+                *self.children
+            )
         )
 
 
