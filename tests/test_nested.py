@@ -1,7 +1,7 @@
 import unittest
 
 from pydom import render
-from components import App, Page
+from .components import App, Page
 
 
 class NestedComponentsTest(unittest.TestCase):
