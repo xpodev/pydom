@@ -11,7 +11,7 @@ from typing import (
     overload,
 )
 
-from typing_extensions import ParamSpec, TypeAlias, Concatenate
+from typing_extensions import ParamSpec, TypeAlias, Concatenate, Self
 
 from pydom.errors import Error
 
@@ -138,7 +138,7 @@ class Context:
         return self.injector.inject(callback)
 
     @classmethod
-    def standard(cls) -> "Context":
+    def standard(cls) -> "Self":
         from .standard import add_standard_features
 
         context = cls()
