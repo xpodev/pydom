@@ -13,19 +13,27 @@ from ...utils.functions import is_primitive
 
 
 def build_raw_tree(
-    renderable: Union[Renderable, Primitive], *, context: "Context"
+    renderable: Union[Renderable, Primitive], *, context: "Context", escape_string=True
 ) -> TreeNode:
     while isinstance(renderable, Component):
         renderable = renderable.render()
 
     if is_primitive(renderable):
-        return TextNode(escape(str(renderable)) if renderable is not None else "")
+        text = str(renderable) if renderable is not None else ""
+        if escape_string:
+            text = escape(text)
+        return TextNode(text)
 
     if not isinstance(renderable, Element):
         raise RenderError(f"Invalid renderable type: {type(renderable)}")
 
     children = (
-        [build_raw_tree(child, context=context) for child in renderable.children]
+        [
+            build_raw_tree(
+                child, context=context, escape_string=renderable.escape_children
+            )
+            for child in renderable.children
+        ]
         if not renderable.inline
         else None
     )

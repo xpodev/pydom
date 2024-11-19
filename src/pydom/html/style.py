@@ -10,3 +10,4 @@ class Style(Element):
         super().__init__(*children, **kwargs)
 
     tag_name = "style"
+    escape_children = False
