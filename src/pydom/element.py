@@ -23,6 +23,8 @@ class Element(Generic[PropsType]):
 
     inline = False
 
+    escape_children = True
+
     def __call__(self, *children: "ChildType"):
         self.children = children
         return self
