@@ -1,10 +1,10 @@
-from typing import Optional
+from typing import Optional, cast
 
 from ..context import Context, get_context
 from ..errors import RenderError
 from .render_state import RenderState
 from .tree import build_tree, TreeNode, TextNode, ElementNode
-from ..types import RenderResult
+from ..types import RenderResult, RenderResultJSON
 
 
 def render_json(
@@ -34,8 +34,11 @@ def _render_json(node: TreeNode):
         for child in node.children:
             children.append(_render_json(child))
 
-    return {
-        "type": node.tag_name,
-        "props": node.props,
-        "children": children,
-    }
+    return cast(
+        RenderResultJSON,
+        {
+            "type": node.tag_name,
+            "props": node.props,
+            "children": children,
+        },
+    )

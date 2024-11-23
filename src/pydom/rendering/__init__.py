@@ -1,5 +1,7 @@
 from typing import overload, Literal, Union, Optional
 
+from pydom.types.rendering import RenderResultJSON
+
 from ..context import Context
 from .html import render_html
 from .json import render_json
@@ -25,7 +27,7 @@ def render(
     to: Literal["json"],
     context: Optional[Context] = None,
     **render_state_data,
-) -> dict: ...
+) -> RenderResultJSON: ...
 
 
 @overload
@@ -44,7 +46,7 @@ def render(
     *,
     to: Literal["json", "html"] = "html",
     **kwargs,
-) -> Union[str, dict]:
+) -> Union[str, RenderResultJSON]:
 
     if to == "json":
         return render_json(element, **kwargs)
