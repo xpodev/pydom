@@ -2,7 +2,7 @@ from typing import Union, overload
 import unittest
 
 from pydom import render
-from pydom.types.rendering import Primitive, RenderTarget, Renderable
+from pydom.types.rendering import Primitive, Renderable
 
 from .utils import test_render_with_file
 

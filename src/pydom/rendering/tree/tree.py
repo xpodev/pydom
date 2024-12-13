@@ -9,7 +9,7 @@ from .nodes.context_node import ContextNode
 from .nodes import TreeNode, ElementNode, TextNode
 from ..props import transform_props
 from ...types import Primitive, Renderable
-from ...utils.functions import is_primitive
+from ...utils.functions import flatten, is_primitive
 
 
 def build_raw_tree(
@@ -32,7 +32,7 @@ def build_raw_tree(
             build_raw_tree(
                 child, context=context, escape_string=renderable.escape_children
             )
-            for child in renderable.children
+            for child in flatten(renderable.children)
         ]
         if not renderable.inline
         else None

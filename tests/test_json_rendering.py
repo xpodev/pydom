@@ -110,3 +110,82 @@ class TestRender(TestCase):
                 "props": {"class": "my-class"},
             },
         )
+
+    def test_render_list_children(self):
+        self.assertRenderJson(
+            Div([Div(), Div()]),
+            {
+                "type": "div",
+                "children": [
+                    {"type": "div", "children": [], "props": {}},
+                    {"type": "div", "children": [], "props": {}},
+                ],
+                "props": {},
+            },
+        )
+
+    def test_render_nested_list_comprehension_children(self):
+        self.assertRenderJson(
+            Div([Div(i) for i in range(5)]),
+            {
+                "type": "div",
+                "children": [
+                    {"type": "div", "children": [str(i)], "props": {}} for i in range(5)
+                ],
+                "props": {},
+            },
+        )
+
+    def test_render_nested_list_children(self):
+        self.assertRenderJson(
+            Div([Div([Div(), Div()]), Div([Div(), Div()])]),
+            {
+                "type": "div",
+                "children": [
+                    {
+                        "type": "div",
+                        "children": [
+                            {"type": "div", "children": [], "props": {}},
+                            {"type": "div", "children": [], "props": {}},
+                        ],
+                        "props": {},
+                    },
+                    {
+                        "type": "div",
+                        "children": [
+                            {"type": "div", "children": [], "props": {}},
+                            {"type": "div", "children": [], "props": {}},
+                        ],
+                        "props": {},
+                    },
+                ],
+                "props": {},
+            },
+        )
+
+    def test_render_list_as_component_children(self):
+        class ItemList(Component):
+            def __init__(self, items) -> None:
+                self.items = items
+
+            def render(self):
+                return Div([Item(item=item) for item in self.items])
+
+        class Item(Component):
+            def __init__(self, item) -> None:
+                self.item = item
+
+            def render(self):
+                return Div(self.item)
+
+        self.assertRenderJson(
+            ItemList(items=[f"item{i}" for i in range(1, 5)]),
+            {
+                "type": "div",
+                "children": [
+                    {"type": "div", "children": [f"item{i}"], "props": {}}
+                    for i in range(1, 5)
+                ],
+                "props": {},
+            },
+        )

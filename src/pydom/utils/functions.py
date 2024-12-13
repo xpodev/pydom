@@ -23,3 +23,11 @@ def to_iter(value):
 
 def is_primitive(value) -> TypeGuard[Primitive]:
     return isinstance(value, (str, int, float, bool)) or value is None
+
+
+def flatten(iterable):
+    for item in iterable:
+        if isinstance(item, (list, tuple)):
+            yield from flatten(item)
+        else:
+            yield item
