@@ -50,7 +50,7 @@ def _render_html(node: TreeNode, pretty=False, tab_indent=0):
     open_tag = f"{node.tag_name} {props_string}".strip()
 
     if node.children is None:
-        return tab + f"<{open_tag}>"
+        return tab + f"<{open_tag} />"
 
     children = newline.join(
         _render_html(child, pretty=pretty, tab_indent=tab_indent + 1)
