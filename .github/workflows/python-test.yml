@@ -4,7 +4,7 @@ on:
   pull_request:
     branches:
       - main
-      - dev/v\d+\.\d+\.\d+
+      - dev/\d+\.\d+\.\d+
     types: [opened, reopened, synchronize]
     paths:
       - 'src/pydom/**/*.py'
