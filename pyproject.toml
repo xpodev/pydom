@@ -1,8 +1,6 @@
 [project]
 name = "python-dom"
-authors = [
-  { name = "Xpo Development", email = "dev@xpo.dev" }
-]
+authors = [{ name = "Xpo Development", email = "dev@xpo.dev" }]
 description = "A Python package for creating and manipulating reusable HTML components"
 readme = "README.md"
 requires-python = ">=3.8"
@@ -27,3 +25,6 @@ package-dir = { "" = "src" }
 [tool.setuptools.dynamic]
 version = { attr = "pydom.version.version" }
 dependencies = { file = ["requirements.txt"] }
+
+[tool.setuptools.package-data]
+pydom = ["py.typed"]
