@@ -1,10 +1,10 @@
-from ....styling import StyleObject
+from ....styling import StyleSheet
 from ...transformers import PropertyTransformer
 
 
 class StyleTransformer(PropertyTransformer):
     def match(self, _, value):
-        return isinstance(value, StyleObject)
+        return isinstance(value, StyleSheet)
 
-    def transform(self, key: str, value: StyleObject, element):
+    def transform(self, key: str, value: StyleSheet, element):
         element.props[key] = value.to_css()

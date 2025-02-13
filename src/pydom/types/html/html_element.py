@@ -3,7 +3,7 @@ from typing import TYPE_CHECKING, Dict, Iterable, Union, Literal, Optional
 from typing_extensions import TypedDict
 
 if TYPE_CHECKING:
-    from pydom.styling import StyleObject
+    from pydom.styling import StyleSheet
 
 
 class HTMLElement(TypedDict, total=False, closed=False):
@@ -21,7 +21,7 @@ class HTMLElement(TypedDict, total=False, closed=False):
     lang: Optional[str]
     role: Optional[str]
     spell_check: Optional[str]
-    style: Optional[Union[str, "StyleObject"]]
+    style: Optional[Union[str, "StyleSheet"]]
     tab_index: Optional[str]
     title: Optional[str]
     translate: Optional[str]
