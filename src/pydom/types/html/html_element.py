@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 class HTMLElement(TypedDict, total=False, closed=False):
     access_key: Optional[str]
     auto_capitalize: Optional[str]
-    class_name: Optional[Union[str, Iterable[str]]]
+    classes: Optional[Union[str, Iterable[str]]]
     content_editable: Optional[str]
     dangerously_set_inner_html: Optional[Dict[Literal["__html"], str]]
     # data: Dict[str, str]  # add this if needed in the future

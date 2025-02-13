@@ -6,7 +6,7 @@ from pydom.page import Page
 
 def index():
     return Page(title="Hello, world!")(
-        Div(class_name=["a", "b"])("Hello, world!")
+        Div(classes=["a", "b"])("Hello, world!")
     )
 
 

@@ -6,7 +6,7 @@ class SVGElementProps(TypedDict, total=False):
 
 class _SVGElementProps(TypedDict, total=False):
     # Attributes also defined in HTMLAttributes
-    class_name: Optional[str]
+    classes: Optional[str]
     color: Optional[str]
     height: Optional[Union[int, str]]
     id: Optional[str]
