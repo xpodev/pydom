@@ -5,12 +5,10 @@ from ...context.context import PostRenderTransformerFunction, get_context, Conte
 
 def post_render_transformer(context: Union[Context, None] = None):
     """
-    A decorator to register a post-render transformer.
-
-    Post-render transformers are functions that take the rendered tree and can modify it in place.
+    A decorator to register a function as a post-render transformer.
 
     Args:
-        context: The context to register the transformer with.
+        context: The context to register the transformer with. If not provided, the default context is used.
 
     Returns:
         A decorator that takes a transformer function and registers it.
