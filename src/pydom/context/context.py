@@ -105,13 +105,18 @@ class Context:
             self._prop_transformers.insert(index, (matcher, self.inject(transformer)))
 
     def add_post_render_transformer(
-        self, transformer: Union[PostRenderTransformerFunction, PostRenderTransformer]
+        self,
+        transformer: Union[PostRenderTransformerFunction, PostRenderTransformer],
+        /,
+        *,
+        before: Optional[List[Type[PostRenderTransformer]]] = None,
+        after: Optional[List[Type[PostRenderTransformer]]] = None,
     ):
         try:
             index = self._find_transformer_insertion_index(
                 self._post_render_transformers,
-                before=[PostRenderTransformer],
-                after=[PostRenderTransformer],
+                before=before,
+                after=after,
             )
         except Error as e:
             raise Error(
