@@ -1,6 +1,6 @@
 # Pydom + HTMX
 
-A recipe to integrate HTMX with Pydom.
+A recipe to integrate [HTMX](https://htmx.org) with Pydom.
 
 ## Minimal requirements
 
@@ -108,3 +108,32 @@ python utils/htmx_typing.py typings
 It will generate the necessary typing files for HTMX attributes, enhancing your development experience with better autocompletion and type checking.
 
 Modify the generated file to fit your project needs, e.g. add htmx extensions.
+
+
+## Usage notes
+
+You can differentiate between HTMX requests and regular requests by checking the `HX-Request` header:
+
+```python
+from pydom import d
+from pydom.page import Page
+
+class MyPage(Page):
+    ...
+
+@router.get("/")
+@inject
+async def root(request: Request):
+    is_htmx = request.headers.get("HX-Request") == "true"
+    if not is_htmx:
+        # Regular request, return the full page
+        wrapper = MyPage()
+    else:
+        # HTMX request, return only the content
+        wrapper = d.Fragment()
+
+    inner = d.Div("Hello, world!")
+    
+    return render(wrapper(inner))
+
+```
