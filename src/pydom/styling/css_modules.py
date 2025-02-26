@@ -18,10 +18,7 @@ class CSSClass:
         self.uuid = random_string()
 
     def add_rule(self, rule: str, properties: Dict[str, str]):
-        if rule not in self.sub_rules:
-            self.sub_rules[rule] = {}
-
-        self.sub_rules[rule].update(properties)
+        self.sub_rules.setdefault(rule, {}).update(properties)
 
     def to_css_string(self, minified=False):
         rules = []
