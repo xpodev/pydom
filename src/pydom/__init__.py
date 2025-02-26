@@ -1,3 +1,10 @@
+import warnings
+
+warnings.warn(
+    "\033[93mThis package is deprecated and will be removed in the next release. Please use the `pydom` package instead.\033[0m",
+)
+
+
 from .component import Component
 from .context.context import Context, set_default_context
 from .html import *
@@ -143,7 +150,6 @@ __all__ = [
     "TSpan",
     "Use",
     "View",
-
     # PyDOM
     "Component",
     "Context",
