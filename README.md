@@ -1,3 +1,3 @@
 # PyDOM
 
-This package is deprecated. Please use [PyDOM](https://pypi.org/project/pydom/) instead.
+This package is deprecated. Please use [pydom](https://pypi.org/project/pydom/) instead.
