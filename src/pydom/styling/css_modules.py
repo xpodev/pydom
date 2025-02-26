@@ -8,7 +8,7 @@ import cssutils
 
 from ..utils.get_frame import get_frame
 
-from ..utils.functions import random_string
+from ..utils.functions import random_string, remove_prefix
 
 
 class CSSClass:
@@ -65,7 +65,7 @@ class CSSModule:
                     css_property.name: css_property.value for css_property in rule.style
                 }
 
-                base_name = first_selector.seq[0].value.removeprefix(".")
+                base_name = remove_prefix(first_selector.seq[0].value, ".")
                 css_class = self.classes.get(base_name, CSSClass(base_name))
                 for selector in selectors:
                     css_class.add_rule(
