@@ -1,6 +1,7 @@
 from .component import Component
 from .context.context import Context, set_default_context
 from .html import *
+from .page import Page
 from .svg import *
 from .rendering import render
 from .version import version as __version__
@@ -148,5 +149,6 @@ __all__ = [
     "Component",
     "Context",
     "render",
+    "Page",
     "__version__",
 ]
