@@ -5,6 +5,7 @@ description = "A Python package for creating and manipulating reusable HTML comp
 readme = "README.md"
 requires-python = ">=3.8"
 classifiers = [
+  "Development Status :: 7 - Inactive",
   "Programming Language :: Python :: 3",
   "License :: OSI Approved :: MIT License",
   "Operating System :: OS Independent",
@@ -17,7 +18,7 @@ Issues = "https://github.com/xpodev/pydom/issues"
 
 [build-system]
 requires = ["setuptools", "wheel"]
-build-backend = "setuptools.build_meta"
+build-backend = "build"
 
 [tool.setuptools]
 package-dir = { "" = "src" }
