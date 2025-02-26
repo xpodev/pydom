@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  *Simple to learn, easy to use, fully-featured UI library for Python*
+  <strong>Simple to learn, easy to use, fully-featured UI library for Python</strong>
 </p>
 
 <p align="center">
