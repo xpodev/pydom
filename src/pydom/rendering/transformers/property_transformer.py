@@ -6,17 +6,13 @@ def property_transformer(
     matcher: Union[Callable[[str, Any], bool], str], context: Optional[Context] = None
 ):
     """
-    A decorator to register a property transformer.
-
-    Transformers are functions that take a key, a value, and the element node object.
-
-    After handling the key and value, the transformer should update the element node
-    properties in place.
+    A decorator to register a function as a property transformer.
 
     Args:
         matcher: A callable that takes a key and a value and returns a boolean
         indicating whether the transformer should be applied.
         If a string is provided, it is assumed to be a key that should be matched exactly.
+        context: The context to register the transformer in. If not provided, the default context is used.
 
     Returns:
         A decorator that takes a transformer function and registers it.

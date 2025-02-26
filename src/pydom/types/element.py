@@ -4,7 +4,7 @@ from typing_extensions import TypedDict
 class ElementProps(TypedDict, total=False, closed=False):
     access_key: str
     auto_capitalize: str
-    class_name: str
+    classes: str
     content_editable: str
     dangerously_set_inner_html: str
     dir: str

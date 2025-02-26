@@ -1,13 +1,22 @@
 [project]
-name = "python-dom"
+name = "pydom"
 authors = [{ name = "Xpo Development", email = "dev@xpo.dev" }]
 description = "A Python package for creating and manipulating reusable HTML components"
 readme = "README.md"
 requires-python = ">=3.8"
 classifiers = [
-  "Programming Language :: Python :: 3",
+  "Development Status :: 4 - Beta",
+  "Environment :: Web Environment",
+  "Intended Audience :: Developers",
   "License :: OSI Approved :: MIT License",
   "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
 ]
 dynamic = ["dependencies", "version"]
 
@@ -28,3 +37,6 @@ dependencies = { file = ["requirements.txt"] }
 
 [tool.setuptools.package-data]
 pydom = ["py.typed"]
+
+[project.scripts]
+pydom = "pydom.cli:main"

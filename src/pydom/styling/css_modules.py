@@ -1,4 +1,3 @@
-import inspect
 import re
 
 from os import PathLike
@@ -7,7 +6,9 @@ from typing import Union, Dict
 
 import cssutils
 
-from ..utils.functions import random_string
+from ..utils.get_frame import get_frame
+
+from ..utils.functions import random_string, remove_prefix
 
 
 class CSSClass:
@@ -17,10 +18,7 @@ class CSSClass:
         self.uuid = random_string()
 
     def add_rule(self, rule: str, properties: Dict[str, str]):
-        if rule not in self.sub_rules:
-            self.sub_rules[rule] = {}
-
-        self.sub_rules[rule].update(properties)
+        self.sub_rules.setdefault(rule, {}).update(properties)
 
     def to_css_string(self, minified=False):
         rules = []
@@ -67,7 +65,7 @@ class CSSModule:
                     css_property.name: css_property.value for css_property in rule.style
                 }
 
-                base_name = first_selector.seq[0].value.removeprefix(".")
+                base_name = remove_prefix(first_selector.seq[0].value, ".")
                 css_class = self.classes.get(base_name, CSSClass(base_name))
                 for selector in selectors:
                     css_class.add_rule(
@@ -79,7 +77,7 @@ class CSSModule:
             if rule.type == rule.UNKNOWN_RULE:
                 self.raw_css += rule.cssText
 
-    def __getattr__(self, __name: str):
+    def __getattr__(self, __name: str) -> str:
         if __name not in self.classes:
             raise AttributeError(f"CSS class {__name} not found in {self.module_name}")
         return self.classes[__name].uuid
@@ -139,14 +137,10 @@ class CSSModulesManager(type):
     def _full_path(cls, css_path: Union[PathLike, str]) -> Path:
         if isinstance(css_path, str):
             if css_path.startswith("./"):
-                frame = inspect.stack()[2]
-                module = inspect.getmodule(frame[0])
-                if module is None or module.__file__ is None:
-                    raise ValueError(
-                        "Cannot use relative path in a module without a file"
-                    )
-
-                css_path = Path(module.__file__).parent / css_path
+                frame = get_frame(2)
+                module = frame.f_globals["__name__"]
+                module_path = Path(module.replace(".", "/"))
+                css_path = module_path.parent / css_path[2:]
 
         css_path = Path(css_path)
 

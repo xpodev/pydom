@@ -6,9 +6,9 @@ from ..types.styling.css_properties import CSSProperties
 T = TypeVar("T")
 
 
-class StyleObject:
+class StyleSheet:
     class _StyleProperty(Generic[T]):
-        def __init__(self, instance: "StyleObject", name: str):
+        def __init__(self, instance: "StyleSheet", name: str):
             self.instance = instance
             self.name = name.replace("_", "-")
 
@@ -18,12 +18,12 @@ class StyleObject:
 
     def __init__(
         self,
-        *styles: Union["StyleObject", CSSProperties],
+        *styles: Union["StyleSheet", CSSProperties],
         **kwargs: Unpack[CSSProperties],
     ):
         self.style: Dict[str, object] = {}
         for style in styles:
-            if isinstance(style, StyleObject):
+            if isinstance(style, StyleSheet):
                 style = style.style
             self.style.update(style)
         self.style.update(kwargs)
@@ -32,7 +32,7 @@ class StyleObject:
         }
 
     def copy(self):
-        return StyleObject(self)
+        return StyleSheet(self)
 
     def to_css(self):
         return "".join(map(lambda x: f"{x[0]}:{x[1]};", self.style.items()))
@@ -41,4 +41,4 @@ class StyleObject:
         return self.to_css()
 
     def __getattr__(self, name: str):
-        return StyleObject._StyleProperty(self, name)
+        return StyleSheet._StyleProperty(self, name)

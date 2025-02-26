@@ -31,3 +31,11 @@ def flatten(iterable):
             yield from flatten(item)
         else:
             yield item
+
+
+def remove_prefix(text: str, prefix: str) -> str:
+    if hasattr(str, "removeprefix"):
+        return text.removeprefix(prefix)
+    if text.startswith(prefix):
+        return text[len(prefix) :]
+    return text

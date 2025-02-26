@@ -1,5 +1,5 @@
 from .color import Color
-from .style_object import StyleObject
+from .stylesheet import StyleSheet
 from .css_modules import CSS
 
-__all__ = ["Color", "StyleObject", "CSS"]
+__all__ = ["Color", "StyleSheet", "CSS"]
