@@ -1,7 +1,7 @@
 # PyDOM
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/xpodev/pydom/refs/heads/dev/0.3.0/docs/_static/images/logo.svg" alt="pydom-logo" width="200">
+  <img src="https://raw.githubusercontent.com/xpodev/pydom/refs/heads/main/docs/_static/images/logo.svg" alt="pydom-logo" width="200">
 </p>
 
 <p align="center">
@@ -92,7 +92,7 @@ That's it! Now you can run the app and access it at [http://localhost:8000/](htt
 It should display a page like this:
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/xpodev/pydom/refs/heads/dev/0.3.0/docs/_static/images/quick-start.jpeg" alt="Quick Start">
+  <img src="https://raw.githubusercontent.com/xpodev/pydom/refs/heads/main/docs/_static/images/quick-start.jpeg" alt="Quick Start">
 </p>
 
 ## Documentation
