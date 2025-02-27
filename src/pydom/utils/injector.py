@@ -1,7 +1,18 @@
 from contextlib import contextmanager
 from inspect import signature, iscoroutinefunction
 from functools import wraps
-from typing import Any, Dict, Optional, Type, TypeVar, Union, overload, Callable
+from typing import (
+    Any,
+    Dict,
+    List,
+    Optional,
+    Tuple,
+    Type,
+    TypeVar,
+    Union,
+    overload,
+    Callable,
+)
 
 from typing_extensions import TypeAlias
 
@@ -34,19 +45,33 @@ class Injector:
         )
 
     def inject(self, callback: Callable) -> Callable:
+        keyword_args = self.inject_params(callback)
+
         if iscoroutinefunction(callback):
 
             @wraps(callback)
             async def wrapper(*args, **kwargs):  # type: ignore
-                keyword_args = self.inject_params(callback)
-                return await callback(*args, **keyword_args, **kwargs)
+                return await callback(
+                    *args,
+                    **{
+                        name: self.dependencies[parameter]()
+                        for name, parameter in keyword_args
+                    },
+                    **kwargs,
+                )
 
         else:
 
             @wraps(callback)
             def wrapper(*args, **kwargs):
-                keyword_args = self.inject_params(callback)
-                return callback(*args, **keyword_args, **kwargs)
+                return callback(
+                    *args,
+                    **{
+                        name: self.dependencies[parameter]()
+                        for name, parameter in keyword_args
+                    },
+                    **kwargs,
+                )
 
         return wrapper
 
@@ -54,7 +79,7 @@ class Injector:
         signature_ = signature(callback)
         parameters = signature_.parameters
 
-        keyword_args = {}
+        keyword_args: List[Tuple[str, type]] = []
 
         for name, parameter in parameters.items():
             if (
@@ -62,7 +87,7 @@ class Injector:
                 in [parameter.POSITIONAL_OR_KEYWORD, parameter.KEYWORD_ONLY]
                 and parameter.annotation in self.dependencies
             ):
-                keyword_args[name] = self.dependencies[parameter.annotation]()
+                keyword_args.append((name, parameter.annotation))
 
         return keyword_args
 
