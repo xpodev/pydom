@@ -1,9 +1,15 @@
-from typing import Any, Callable, Union, Optional
+from typing import Any, Callable, List, Optional, Type, Union
+
+from pydom.context.transformers import PropertyTransformer
 from ...context.context import PropertyTransformerFunction, Context, get_context
 
 
 def property_transformer(
-    matcher: Union[Callable[[str, Any], bool], str], context: Optional[Context] = None
+    matcher: Union[Callable[[str, Any], bool], str],
+    *,
+    context: Optional[Context] = None,
+    before: Optional[List[Type[PropertyTransformer]]] = None,
+    after: Optional[List[Type[PropertyTransformer]]] = None,
 ):
     """
     A decorator to register a function as a property transformer.
@@ -29,7 +35,7 @@ def property_transformer(
     context = get_context(context)
 
     def decorator(func: PropertyTransformerFunction):
-        context.add_prop_transformer(matcher, func)
+        context.add_prop_transformer(matcher, func, before=before, after=after)
         return func
 
     return decorator

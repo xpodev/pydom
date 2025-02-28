@@ -1,9 +1,15 @@
-from typing import Union
+from typing import List, Optional, Type, Union
 
 from ...context.context import PostRenderTransformerFunction, get_context, Context
+from ...context.transformers import PostRenderTransformer
 
 
-def post_render_transformer(context: Union[Context, None] = None):
+def post_render_transformer(
+    *,
+    context: Union[Context, None] = None,
+    before: Optional[List[Type[PostRenderTransformer]]] = None,
+    after: Optional[List[Type[PostRenderTransformer]]] = None,
+):
     """
     A decorator to register a function as a post-render transformer.
 
@@ -27,7 +33,7 @@ def post_render_transformer(context: Union[Context, None] = None):
     context = get_context(context)
 
     def decorator(func: PostRenderTransformerFunction):
-        context.add_post_render_transformer(func)
+        context.add_post_render_transformer(func, before=before, after=after)
         return func
 
     return decorator
