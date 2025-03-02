@@ -2,8 +2,6 @@ from typing_extensions import Unpack
 
 from ..element import Element
 from ..types.html import HTMLScriptElement
-from ..types import ChildType
-from ..utils.functions import to_iter
 
 
 class Script(Element):
