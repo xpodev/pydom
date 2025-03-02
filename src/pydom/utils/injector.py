@@ -1,4 +1,3 @@
-from contextlib import contextmanager
 from inspect import signature, iscoroutinefunction
 from functools import wraps
 from typing import (
@@ -45,7 +44,7 @@ class Injector:
         )
 
     def inject(self, callback: Callable) -> Callable:
-        keyword_args = self.inject_params(callback)
+        keyword_args = self._inject_params(callback)
 
         if iscoroutinefunction(callback):
 
@@ -75,7 +74,7 @@ class Injector:
 
         return wrapper
 
-    def inject_params(self, callback: Callable):
+    def _inject_params(self, callback: Callable):
         signature_ = signature(callback)
         parameters = signature_.parameters
 
@@ -90,13 +89,3 @@ class Injector:
                 keyword_args.append((name, parameter.annotation))
 
         return keyword_args
-
-    @contextmanager
-    def scope(self, dependencies: Dict[type, InjectFactory]):
-        original_dependencies = self.dependencies.copy()
-        self.dependencies.update(dependencies)
-
-        try:
-            yield
-        finally:
-            self.dependencies = original_dependencies
