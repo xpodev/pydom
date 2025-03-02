@@ -1,7 +1,5 @@
 from typing import (
     Callable,
-    Any,
-    Dict,
     Tuple,
     TypeVar,
     Union,
@@ -11,7 +9,7 @@ from typing import (
     overload,
 )
 
-from typing_extensions import ParamSpec, TypeAlias, Concatenate, Self
+from typing_extensions import ParamSpec, Self
 
 from pydom.errors import Error
 
@@ -28,8 +26,6 @@ from ..utils.injector import Injector
 T = TypeVar("T")
 P = ParamSpec("P")
 
-Feature: TypeAlias = Callable[Concatenate["Context", P], Any]
-
 
 class Context:
     def __init__(self) -> None:
@@ -41,22 +37,6 @@ class Context:
             ]
         ] = []
         self._post_render_transformers: List[PostRenderTransformerFunction] = []
-        self._features: Dict[type, Any] = {}
-
-    def add_feature(self, feature: Feature[P], *args: P.args, **kwargs: P.kwargs):
-        result = feature(self, *args, **kwargs)
-        if isinstance(feature, type):
-            self._features[feature] = result
-
-    def get_feature(self, feature: Type[T]) -> T:
-        try:
-            return self._features[feature]
-        except KeyError:
-            for cls in self._features:
-                if issubclass(cls, feature):
-                    return self._features[cls]
-
-            raise
 
     @overload
     def add_prop_transformer(
