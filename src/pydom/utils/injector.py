@@ -1,3 +1,4 @@
+from contextlib import contextmanager
 from inspect import signature, iscoroutinefunction
 from functools import wraps
 from typing import (
@@ -14,6 +15,8 @@ from typing import (
 )
 
 from typing_extensions import TypeAlias
+
+from pydom.errors import DependencyOutOfContextError
 
 T = TypeVar("T")
 
@@ -74,6 +77,16 @@ class Injector:
 
         return wrapper
 
+    @contextmanager
+    def scope(self, dependencies: Dict[type, InjectFactory]):
+        original_dependencies = self.dependencies.copy()
+        self.dependencies.update(dependencies)
+
+        try:
+            yield
+        finally:
+            self.dependencies = original_dependencies
+
     def _inject_params(self, callback: Callable):
         signature_ = signature(callback)
         parameters = signature_.parameters
@@ -89,3 +102,10 @@ class Injector:
                 keyword_args.append((name, parameter.annotation))
 
         return keyword_args
+
+
+def future_dependency(message: str):
+    def factory() -> str:
+        raise DependencyOutOfContextError(message)
+    
+    return factory
