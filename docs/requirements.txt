@@ -1,2 +1,3 @@
 pydata-sphinx-theme==0.16.1
 sphinx-substitution-extensions==2024.8.6
+sphinx-autoapi=3.6.0
