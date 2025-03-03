@@ -1,3 +1,4 @@
+from typing import List
 import pydom as d
 from pydom.context.context import get_context
 from pydom.page import Page
@@ -12,7 +13,7 @@ from examples.htmx.utils.htmx_runtime import (
 from ..base import TestCase
 
 # HTMX Extensions to be registered
-HTMX_EXTENSIONS: list[HTMXExtension] = [
+HTMX_EXTENSIONS: List[HTMXExtension] = [
     HTMXSSEExtension(),
     HTMXClassToolsExtension(),
 ]
