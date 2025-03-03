@@ -2,8 +2,6 @@ from ...transformers import PropertyTransformer
 
 _SIMPLE_TRANSFORMERS = {
     "html_for": "for",
-    "accept_charset": "accept-charset",
-    "http_equiv": "http-equiv",
     "access_key": "accesskey",
     "content_editable": "contenteditable",
     "cross_origin": "crossorigin",
