@@ -29,9 +29,8 @@ def render_html(
     """
     context = get_context(context)
     render_state = RenderState(root=element, render_target="html", **render_state_data)
-    context.injector.add(RenderState, render_state)
-
-    tree = build_tree(element, context=context)
+    with context.injector.scope({RenderState: lambda: render_state}):
+        tree = build_tree(element, context=context)
 
     return _render_html(tree, pretty=pretty, tab_indent=tab_indent)
 

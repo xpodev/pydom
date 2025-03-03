@@ -21,7 +21,7 @@ from .transformers import (
     PropertyTransformerFunction,
 )
 
-from ..utils.injector import Injector
+from ..utils.injector import Injector, future_dependency
 
 T = TypeVar("T")
 P = ParamSpec("P")
@@ -29,7 +29,16 @@ P = ParamSpec("P")
 
 class Context:
     def __init__(self) -> None:
-        self.injector = Injector({Context: self})
+        from pydom.rendering.render_state import RenderState
+
+        self.injector: Injector = Injector(
+            {
+                Context: self,
+                RenderState: future_dependency(
+                    "RenderState is only available during rendering"
+                ),
+            }
+        )
         self._prop_transformers: List[
             Union[
                 Tuple[PropertyMatcherFunction, PropertyTransformerFunction],
