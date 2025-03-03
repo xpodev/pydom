@@ -1,7 +1,7 @@
 import pydom as d
 from pydom.context.context import get_context
 from pydom.page import Page
-from recipes.htmx.utils.htmx_runtime import (
+from examples.htmx.utils.htmx_runtime import (
     HTMX,
     HTMXClassToolsExtension,
     HTMXExtension,
