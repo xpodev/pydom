@@ -66,7 +66,7 @@ from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
 from pydom import render, Div, P
 
-form app_page import AppPage
+from app_page import AppPage
 
 app = FastAPI()
 
