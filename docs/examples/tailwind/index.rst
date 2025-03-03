@@ -74,7 +74,7 @@ Now you can use Tailwind CSS classes in your PyDOM components:
     def MyComponent():
         return Div(
             "Hello, world!",
-            class="text-center text-2xl text-red-500"
+            classes="text-center text-2xl text-red-500"
         )
 
 That's it! Now you can run your app and see the Tailwind CSS styles applied.
