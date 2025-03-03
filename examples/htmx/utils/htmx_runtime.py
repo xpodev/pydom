@@ -3,6 +3,7 @@ import typing_extensions as t
 from pydom.context.context import Context, PropertyTransformer
 from pydom.html import Script, Style
 from pydom.types.html import HTMLScriptElement
+from pydom.utils.functions import remove_prefix
 
 T = t.TypeVar("T")
 
@@ -58,17 +59,17 @@ class HTMXTransformer(PropertyTransformer):
             if key.startswith("hx_on_htmx_"):
                 # Special case for htmx events: hx-on:htmx:*
                 prefix = "hx-on:htmx:"
-                event = key.removeprefix("hx_on_htmx_")
+                event = remove_prefix(key, "hx_on_htmx_")
 
             elif key.startswith("hx_on__"):
                 # Special case for htmx events: hx-on::*
                 prefix = "hx-on::"
-                event = key.removeprefix("hx_on__")
+                event = remove_prefix(key, "hx_on__")
 
             else:  # key.startswith("hx_on_")
                 # regular events: hx-on:*
                 prefix = "hx-on:"
-                event = key.removeprefix("hx_on_")
+                event = remove_prefix(key, "hx_on_")
 
             if "__" in event:
                 # some events uses : as a separator, in python we use __ to indicate that
