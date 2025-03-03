@@ -15,9 +15,8 @@ def render_json(
 ):
     context = get_context(context)
     render_state = RenderState(root=element, render_target="json", **render_state_data)
-    context.injector.add(RenderState, render_state)
-
-    tree = build_tree(element, context=context)
+    with context.injector.scope({RenderState: lambda: render_state}):
+        tree = build_tree(element, context=context)
 
     return _render_json(tree)
 

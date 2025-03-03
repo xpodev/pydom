@@ -1,0 +1,30 @@
+html[data-theme="light"] {
+  --pst-color-primary: #564fa1;
+  --pst-color-secondary: #7f88c3;
+  --pst-color-secondary-hover: #e6e6e6;
+  --pst-color-secondary-highlight: #7f3f98 ;
+}
+
+html[data-theme="dark"] {
+  --pst-color-primary: #7f88c3;
+  --pst-color-secondary: #f7f7f7;
+  --pst-color-secondary-hover: #e6e6e6;
+  --pst-color-secondary-highlight: #7f3f98;
+}
+
+.navbar-brand {
+  gap: 1rem;
+}
+
+.navbar-brand img {
+  height: 85%;
+}
+
+.navbar-item nav {
+  border-left: 2px solid #5d5d5f;
+  padding-left: 8px;
+}
+
+.index-logo {
+  max-width: 250px;
+}

@@ -9,9 +9,10 @@
 </p>
 
 <p align="center">
-  <a href="https://pypi.org/project/python-dom/">
-    <img src="https://img.shields.io/pypi/v/pydom.svg" alt="PyPI version">
+  <a href="https://pypi.org/project/pydom/">
+    <img src="https://img.shields.io/pypi/v/pydom.svg?color=32bc31" alt="PyPI Version">
   </a>
+  <img src="https://img.shields.io/pypi/pyversions/pydom.svg?color=32bc31" alt="Supported Python Versions">
 </p>
 
 PyDOM is a Python library that allows you to create web pages using a declarative syntax.

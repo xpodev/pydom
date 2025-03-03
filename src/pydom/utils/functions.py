@@ -1,8 +1,11 @@
 from string import ascii_letters
 from uuid import uuid4
-from typing_extensions import TypeGuard
+from typing_extensions import TypeGuard, overload, TypeVar, Iterator, Iterable
 
 from ..types import Primitive
+
+
+_T = TypeVar("_T")
 
 ascii_length = len(ascii_letters)
 
@@ -14,11 +17,18 @@ def random_string(length=12):
     )[:length]
 
 
+# fmt: off
+@overload
+def to_iter(value: Iterable[_T]) -> Iterator[_T]: ...
+@overload
+def to_iter(value: _T) -> Iterator[_T]: ...
+
 def to_iter(value):
     try:
         return iter(value)
     except TypeError:
         return iter((value,))
+# fmt: on
 
 
 def is_primitive(value) -> TypeGuard[Primitive]:

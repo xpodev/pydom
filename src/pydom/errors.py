@@ -12,3 +12,11 @@ class RenderError(Error):
     """
 
     ...
+
+
+class DependencyOutOfContextError(Error):
+    """
+    Raised when a dependency is requested that is not in the context.
+    """
+
+    ...
