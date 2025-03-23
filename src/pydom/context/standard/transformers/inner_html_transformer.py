@@ -1,6 +1,6 @@
 from pydom.rendering.tree.nodes import TextNode
 
-from ...transformers import PropertyTransformer
+from ....rendering.transformers import PropertyTransformer
 
 
 class InnerHTMLTransformer(PropertyTransformer):

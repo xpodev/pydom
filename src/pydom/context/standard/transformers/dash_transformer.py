@@ -1,4 +1,4 @@
-from ...transformers import PropertyTransformer
+from ....rendering.transformers import PropertyTransformer
 from ....utils.functions import is_primitive
 
 

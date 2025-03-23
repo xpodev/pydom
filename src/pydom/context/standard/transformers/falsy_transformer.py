@@ -1,4 +1,4 @@
-from ...transformers import PropertyTransformer
+from ....rendering.transformers import PropertyTransformer
 
 
 class FalsyTransformer(PropertyTransformer):

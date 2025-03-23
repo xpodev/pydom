@@ -1,17 +1,19 @@
-from typing import Optional
+from typing import Optional, TYPE_CHECKING
 
-from ..context import Context, get_context
 from ..errors import RenderError
 from .props import render_props
 from .render_state import RenderState
 from .tree import ElementNode, TreeNode, TextNode, build_tree
 from ..types import RenderResult
 
+if TYPE_CHECKING:
+    from ..context import Context
+
 
 def render_html(
     element: RenderResult,
     *,
-    context: Optional[Context] = None,
+    context: Optional["Context"] = None,
     pretty=False,
     tab_indent=1,
     **render_state_data,
@@ -27,6 +29,8 @@ def render_html(
     Returns:
         str: The rendered HTML string.
     """
+    from ..context import get_context
+
     context = get_context(context)
     render_state = RenderState(root=element, render_target="html", **render_state_data)
     with context.injector.scope({RenderState: lambda: render_state}):

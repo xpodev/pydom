@@ -1,18 +1,22 @@
-from typing import Optional, cast
+from typing import Optional, cast, TYPE_CHECKING
 
-from ..context import Context, get_context
 from ..errors import RenderError
 from .render_state import RenderState
 from .tree import build_tree, TreeNode, TextNode, ElementNode
 from ..types import RenderResult, RenderResultJSON
 
+if TYPE_CHECKING:
+    from ..context import Context
+
 
 def render_json(
     element: RenderResult,
     *,
-    context: Optional[Context] = None,
+    context: Optional["Context"] = None,
     **render_state_data,
 ):
+    from ..context import get_context
+
     context = get_context(context)
     render_state = RenderState(root=element, render_target="json", **render_state_data)
     with context.injector.scope({RenderState: lambda: render_state}):

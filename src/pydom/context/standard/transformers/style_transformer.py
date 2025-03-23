@@ -1,5 +1,5 @@
 from ....styling import StyleSheet
-from ...transformers import PropertyTransformer
+from ....rendering.transformers import PropertyTransformer
 
 
 class StyleTransformer(PropertyTransformer):
