@@ -17,11 +17,7 @@ Module Contents
 
 .. py:class:: ClassTransformer(prop_name='classes')
 
-   Bases: :py:obj:`pydom.context.transformers.PropertyTransformer`
-
-
-   Helper class that provides a standard way to create an ABC using
-   inheritance.
+   Bases: :py:obj:`pydom.rendering.transformers.PropertyTransformer`
 
 
    .. py:attribute:: prop_name
