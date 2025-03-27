@@ -136,11 +136,10 @@ class CSSModulesManager(type):
 
     def _full_path(cls, css_path: Union[PathLike, str]) -> Path:
         if isinstance(css_path, str):
-            if css_path.startswith("./"):
+            if css_path.startswith("./") or css_path.startswith("../"):
                 frame = get_frame(2)
-                module = frame.f_globals["__name__"]
-                module_path = Path(module.replace(".", "/"))
-                css_path = module_path.parent / css_path[2:]
+                module = frame.f_globals["__file__"]
+                css_path = Path(module).parent / css_path
 
         css_path = Path(css_path)
 
