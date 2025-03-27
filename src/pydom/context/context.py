@@ -30,7 +30,7 @@ class Context:
 
         self.injector: Injector = Injector(
             {
-                Context: self,
+                type(self): self,
                 RenderState: future_dependency("RenderState is only available during rendering"),
             }
         )
