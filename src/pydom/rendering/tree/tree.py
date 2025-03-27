@@ -1,8 +1,7 @@
 from html import escape
-from typing import Union
+from typing import Union, TYPE_CHECKING
 
 from ...component import Component
-from ...context import Context
 from ...element import Element
 from ...errors import RenderError
 from .nodes.context_node import ContextNode
@@ -10,6 +9,9 @@ from .nodes import TreeNode, ElementNode, TextNode
 from ..props import transform_props
 from ...types import Primitive, Renderable
 from ...utils.functions import flatten, is_primitive
+
+if TYPE_CHECKING:
+    from ...context import Context
 
 
 def build_raw_tree(

@@ -1,10 +1,10 @@
 from html import escape
 from typing import Any, TYPE_CHECKING, Dict
 
-from ..context import Context
 from ..errors import RenderError
 
 if TYPE_CHECKING:
+    from ..context import Context
     from .tree.nodes.context_node import ContextNode
 
 
@@ -23,15 +23,10 @@ def transform_props(element: "ContextNode", *, context: "Context"):
                 if matcher(key, value):
                     transformer(key, value, element)
         else:
-            raise RenderError(
-                f"Invalid matcher: {matcher} must be a callable or a string."
-            )
+            raise RenderError(f"Invalid matcher: {matcher} must be a callable or a string.")
 
     element.props.update(element.props)
 
 
 def render_props(props: Dict[str, Any]) -> str:
-    return " ".join(
-        key if value is True else f'{key}="{escape(str(value))}"'
-        for key, value in props.items()
-    )
+    return " ".join(key if value is True else f'{key}="{escape(str(value))}"' for key, value in props.items())

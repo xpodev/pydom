@@ -1,4 +1,4 @@
-from ...transformers import PropertyTransformer
+from ....rendering.transformers import PropertyTransformer
 
 _SIMPLE_TRANSFORMERS = {
     "html_for": "for",

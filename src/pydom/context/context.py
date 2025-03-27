@@ -1,7 +1,6 @@
 from typing import (
     Callable,
     Tuple,
-    TypeVar,
     Union,
     Optional,
     Type,
@@ -9,22 +8,20 @@ from typing import (
     overload,
 )
 
-from typing_extensions import ParamSpec, Self
+from typing_extensions import Self
 
 from pydom.errors import Error
 
-from .transformers import (
+from ..rendering.transformers import (
     PostRenderTransformer,
-    PostRenderTransformerFunction,
     PropertyTransformer,
+)
+from ..rendering.transformers.post_render_transformer import PostRenderTransformerFunction
+from ..rendering.transformers.property_transformer import (
     PropertyMatcherFunction,
     PropertyTransformerFunction,
 )
-
 from ..utils.injector import Injector, future_dependency
-
-T = TypeVar("T")
-P = ParamSpec("P")
 
 
 class Context:
@@ -34,9 +31,7 @@ class Context:
         self.injector: Injector = Injector(
             {
                 Context: self,
-                RenderState: future_dependency(
-                    "RenderState is only available during rendering"
-                ),
+                RenderState: future_dependency("RenderState is only available during rendering"),
             }
         )
         self._prop_transformers: List[
@@ -83,9 +78,7 @@ class Context:
                 after=after,
             )
         except Error as e:
-            raise Error(
-                str(e) + f"\nCould not add transformer {matcher} into prop_transformers"
-            ) from e
+            raise Error(str(e) + f"\nCould not add transformer {matcher} into prop_transformers") from e
         if isinstance(matcher, PropertyTransformer):
             self._prop_transformers.insert(index, matcher)
 
@@ -108,15 +101,10 @@ class Context:
                 after=after,
             )
         except Error as e:
-            raise Error(
-                str(e)
-                + f"\nCould not add transformer {transformer} into post_render_transformers"
-            ) from e
+            raise Error(str(e) + f"\nCould not add transformer {transformer} into post_render_transformers") from e
 
         if isinstance(transformer, PostRenderTransformer):
-            self._post_render_transformers.insert(
-                index, self.inject(transformer.transform)
-            )
+            self._post_render_transformers.insert(index, self.inject(transformer.transform))
         else:
             self._post_render_transformers.insert(index, self.inject(transformer))
 
@@ -158,9 +146,7 @@ class Context:
         after_set = set(after) if after is not None else set()
 
         if not before_set.isdisjoint(after_set):
-            raise Error(
-                "Cannot specify the same transformer in both before and after lists"
-            )
+            raise Error("Cannot specify the same transformer in both before and after lists")
 
         before_indexes = {}
         after_indexes = {}

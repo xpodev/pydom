@@ -1,14 +1,15 @@
-from typing import List, Optional, Union
+from typing import List, Optional, Union, TYPE_CHECKING
 
 from ....errors import RenderError
 from .element_node import ElementNode
-from ....context import Context
 from ....types import Renderable, Primitive
 
+if TYPE_CHECKING:
+    from ....context import Context
 
 
 class ContextNode:
-    def __init__(self, node: ElementNode, context: Context):
+    def __init__(self, node: ElementNode, context: "Context"):
         self.node = node
         self.context = context
 
@@ -52,9 +53,7 @@ class ContextNode:
 
         current_index = self.parent.children.index(self.node)
 
-        self.parent.children.insert(
-            current_index + 1, self._build(node)
-        )
+        self.parent.children.insert(current_index + 1, self._build(node))
 
     def insert_before(self, node: Union[Renderable, Primitive]):
         if self.parent is None:
@@ -63,9 +62,7 @@ class ContextNode:
         assert isinstance(self.parent.children, list)
 
         current_index = self.parent.children.index(self.node)
-        self.parent.children.insert(
-            current_index, self._build(node)
-        )
+        self.parent.children.insert(current_index, self._build(node))
 
     def insert_child(self, index: int, node: Union[Renderable, Primitive]):
         if self.children is None:
@@ -93,4 +90,5 @@ class ContextNode:
 
     def _build(self, renderable: Union[Renderable, Primitive]):
         from ..tree import build_raw_tree
+
         return build_raw_tree(renderable, context=self.context)

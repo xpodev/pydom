@@ -1,11 +1,13 @@
-from typing import overload, Literal, Union, Optional
+from typing import overload, Literal, Union, Optional, TYPE_CHECKING
 
 from pydom.types.rendering import RenderResultJSON
 
-from ..context import Context
 from .html import render_html
 from .json import render_json
 from ..types import Renderable, Primitive
+
+if TYPE_CHECKING:
+    from ..context import Context
 
 
 @overload
@@ -15,7 +17,7 @@ def render(
     to: Literal["html"],
     pretty: bool = False,
     tab_indent: int = 1,
-    context: Optional[Context] = None,
+    context: Optional["Context"] = None,
     **render_state_data,
 ) -> str: ...
 
@@ -25,7 +27,7 @@ def render(
     element: Union[Renderable, Primitive],
     *,
     to: Literal["json"],
-    context: Optional[Context] = None,
+    context: Optional["Context"] = None,
     **render_state_data,
 ) -> RenderResultJSON: ...
 
@@ -36,7 +38,7 @@ def render(
     *,
     pretty: bool = False,
     tab_indent: int = 1,
-    context: Optional[Context] = None,
+    context: Optional["Context"] = None,
     **render_state_data,
 ) -> str: ...
 

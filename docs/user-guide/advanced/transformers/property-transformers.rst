@@ -19,7 +19,7 @@ Function Based Property Transformers
 The function-based transformers are simple functions that take the property name, value, element, and render state as arguments.
 
 After the function is defined, you can use the :func:`property_transformer <pydom.rendering.transformers.property_transformer>` decorator to register the transformer.
-The decorator takes the property name as an argument or a :type:`matcher function <pydom.context.transformers.PropertyMatcherFunction>` that returns ``True`` if the transformer should be applied.
+The decorator takes the property name as an argument or a :type:`matcher function <pydom.rendering.transformers.property_transformer.PropertyMatcherFunction>` that returns ``True`` if the transformer should be applied.
 
 The following example demonstrates how to use a property transformer to give a class to each element that has inline styles.
 
@@ -45,7 +45,7 @@ The following example demonstrates how to use a property transformer to give a c
 Class Based Property Transformers
 #################################
 
-The class-based transformers are classes that inherit from the :class:`PropertyTransformer <pydom.context.transformers.PropertyTransformer>`
+The class-based transformers are classes that inherit from the :class:`PropertyTransformer <pydom.rendering.transformers.PropertyTransformer>`
 class and implement the ``match`` and ``transform`` methods.
 
 The ``match`` method should return ``True`` if the transformer should be applied.

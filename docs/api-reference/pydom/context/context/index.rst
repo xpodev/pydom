@@ -4,15 +4,6 @@ pydom.context.context
 .. py:module:: pydom.context.context
 
 
-Attributes
-----------
-
-.. autoapisummary::
-
-   pydom.context.context.T
-   pydom.context.context.P
-
-
 Classes
 -------
 
@@ -33,21 +24,17 @@ Functions
 Module Contents
 ---------------
 
-.. py:data:: T
-
-.. py:data:: P
-
 .. py:class:: Context
 
    .. py:attribute:: injector
       :type:  pydom.utils.injector.Injector
 
 
-   .. py:method:: add_prop_transformer(transformer: pydom.context.transformers.PropertyTransformer, /, *, before: Optional[List[Type[pydom.context.transformers.PropertyTransformer]]] = None, after: Optional[List[Type[pydom.context.transformers.PropertyTransformer]]] = None) -> None
-                  add_prop_transformer(matcher: pydom.context.transformers.PropertyMatcherFunction, transformer: pydom.context.transformers.PropertyTransformerFunction, /, *, before: Optional[List[Type[pydom.context.transformers.PropertyTransformer]]] = None, after: Optional[List[Type[pydom.context.transformers.PropertyTransformer]]] = None) -> None
+   .. py:method:: add_prop_transformer(transformer: pydom.rendering.transformers.PropertyTransformer, /, *, before: Optional[List[Type[pydom.rendering.transformers.PropertyTransformer]]] = None, after: Optional[List[Type[pydom.rendering.transformers.PropertyTransformer]]] = None) -> None
+                  add_prop_transformer(matcher: pydom.rendering.transformers.property_transformer.PropertyMatcherFunction, transformer: pydom.rendering.transformers.property_transformer.PropertyTransformerFunction, /, *, before: Optional[List[Type[pydom.rendering.transformers.PropertyTransformer]]] = None, after: Optional[List[Type[pydom.rendering.transformers.PropertyTransformer]]] = None) -> None
 
 
-   .. py:method:: add_post_render_transformer(transformer: Union[pydom.context.transformers.PostRenderTransformerFunction, pydom.context.transformers.PostRenderTransformer], /, *, before: Optional[List[Type[pydom.context.transformers.PostRenderTransformer]]] = None, after: Optional[List[Type[pydom.context.transformers.PostRenderTransformer]]] = None)
+   .. py:method:: add_post_render_transformer(transformer: Union[pydom.rendering.transformers.post_render_transformer.PostRenderTransformerFunction, pydom.rendering.transformers.PostRenderTransformer], /, *, before: Optional[List[Type[pydom.rendering.transformers.PostRenderTransformer]]] = None, after: Optional[List[Type[pydom.rendering.transformers.PostRenderTransformer]]] = None)
 
 
    .. py:property:: prop_transformers

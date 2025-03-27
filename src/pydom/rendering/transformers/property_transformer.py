@@ -1,13 +1,54 @@
-from typing import Any, Callable, List, Optional, Type, Union
+from abc import ABC, abstractmethod
+from typing import (
+    Any,
+    Callable,
+    List,
+    Optional,
+    Type,
+    Union,
+    TYPE_CHECKING,
+    Tuple,
+)
 
-from pydom.context.transformers import PropertyTransformer
-from ...context.context import PropertyTransformerFunction, Context, get_context
+from typing_extensions import ParamSpec, TypeAlias, Concatenate
+
+if TYPE_CHECKING:
+    from pydom.context import Context
+    from pydom.rendering.tree.nodes import ContextNode
+
+
+P = ParamSpec("P")
+
+PropertyMatcherFunction: TypeAlias = Union[Callable[Concatenate[str, Any, P], bool], str]
+PropertyTransformerFunction: TypeAlias = Callable[Concatenate[str, Any, "ContextNode", P], None]
+
+if TYPE_CHECKING:
+
+    class PropertyTransformer(ABC, Tuple[PropertyMatcherFunction, PropertyTransformerFunction]):
+        @abstractmethod
+        def match(self, prop_name: str, prop_value, /) -> bool: ...
+        @abstractmethod
+        def transform(self, prop_name: str, prop_value, element: "ContextNode", /): ...
+
+else:
+
+    class PropertyTransformer(ABC):
+        @abstractmethod
+        def match(self, prop_name: str, prop_value, /) -> bool:
+            pass
+
+        @abstractmethod
+        def transform(self, prop_name: str, prop_value, element: "ContextNode", /):
+            pass
+
+        def __iter__(self):
+            return iter((self.match, self.transform))
 
 
 def property_transformer(
     matcher: Union[Callable[[str, Any], bool], str],
     *,
-    context: Optional[Context] = None,
+    context: Optional["Context"] = None,
     before: Optional[List[Type[PropertyTransformer]]] = None,
     after: Optional[List[Type[PropertyTransformer]]] = None,
 ):
@@ -32,6 +73,8 @@ def property_transformer(
         ...     element.props["class"] = " ".join(str(class_name).split())
 
     """
+    from ...context import get_context
+
     context = get_context(context)
 
     def decorator(func: PropertyTransformerFunction):

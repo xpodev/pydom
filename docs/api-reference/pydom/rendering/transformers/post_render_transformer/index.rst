@@ -4,6 +4,23 @@ pydom.rendering.transformers.post_render_transformer
 .. py:module:: pydom.rendering.transformers.post_render_transformer
 
 
+Attributes
+----------
+
+.. autoapisummary::
+
+   pydom.rendering.transformers.post_render_transformer.P
+   pydom.rendering.transformers.post_render_transformer.PostRenderTransformerFunction
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   pydom.rendering.transformers.post_render_transformer.PostRenderTransformer
+
+
 Functions
 ---------
 
@@ -15,7 +32,26 @@ Functions
 Module Contents
 ---------------
 
-.. py:function:: post_render_transformer(*, context: Union[pydom.context.context.Context, None] = None, before: Optional[List[Type[pydom.context.transformers.PostRenderTransformer]]] = None, after: Optional[List[Type[pydom.context.transformers.PostRenderTransformer]]] = None)
+.. py:data:: P
+
+.. py:data:: PostRenderTransformerFunction
+   :type:  typing_extensions.TypeAlias
+
+.. py:class:: PostRenderTransformer
+
+   Bases: :py:obj:`abc.ABC`
+
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+
+   .. py:method:: transform(element: pydom.rendering.tree.nodes.ContextNode)
+      :abstractmethod:
+
+
+
+.. py:function:: post_render_transformer(*, context: Union[pydom.context.Context, None] = None, before: Optional[List[Type[PostRenderTransformer]]] = None, after: Optional[List[Type[PostRenderTransformer]]] = None)
 
    A decorator to register a function as a post-render transformer.
 

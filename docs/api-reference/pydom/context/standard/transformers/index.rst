@@ -38,11 +38,7 @@ Package Contents
 
 .. py:class:: ClassTransformer(prop_name='classes')
 
-   Bases: :py:obj:`pydom.context.transformers.PropertyTransformer`
-
-
-   Helper class that provides a standard way to create an ABC using
-   inheritance.
+   Bases: :py:obj:`pydom.rendering.transformers.PropertyTransformer`
 
 
    .. py:attribute:: prop_name
@@ -58,11 +54,7 @@ Package Contents
 
 .. py:class:: DashTransformer
 
-   Bases: :py:obj:`pydom.context.transformers.PropertyTransformer`
-
-
-   Helper class that provides a standard way to create an ABC using
-   inheritance.
+   Bases: :py:obj:`pydom.rendering.transformers.PropertyTransformer`
 
 
    .. py:method:: match(prop_name, _) -> bool
@@ -73,11 +65,7 @@ Package Contents
 
 .. py:class:: FalsyTransformer
 
-   Bases: :py:obj:`pydom.context.transformers.PropertyTransformer`
-
-
-   Helper class that provides a standard way to create an ABC using
-   inheritance.
+   Bases: :py:obj:`pydom.rendering.transformers.PropertyTransformer`
 
 
    .. py:method:: match(_, prop_value) -> bool
@@ -88,11 +76,7 @@ Package Contents
 
 .. py:class:: HTMLEventsTransformer
 
-   Bases: :py:obj:`pydom.context.transformers.PropertyTransformer`
-
-
-   Helper class that provides a standard way to create an ABC using
-   inheritance.
+   Bases: :py:obj:`pydom.rendering.transformers.PropertyTransformer`
 
 
    .. py:method:: match(prop_name, prop_value) -> bool
@@ -103,11 +87,7 @@ Package Contents
 
 .. py:class:: InnerHTMLTransformer
 
-   Bases: :py:obj:`pydom.context.transformers.PropertyTransformer`
-
-
-   Helper class that provides a standard way to create an ABC using
-   inheritance.
+   Bases: :py:obj:`pydom.rendering.transformers.PropertyTransformer`
 
 
    .. py:method:: match(prop_name: str, _) -> bool
@@ -118,11 +98,7 @@ Package Contents
 
 .. py:class:: SimpleTransformer
 
-   Bases: :py:obj:`pydom.context.transformers.PropertyTransformer`
-
-
-   Helper class that provides a standard way to create an ABC using
-   inheritance.
+   Bases: :py:obj:`pydom.rendering.transformers.PropertyTransformer`
 
 
    .. py:method:: match(prop_name, _) -> bool
@@ -133,11 +109,7 @@ Package Contents
 
 .. py:class:: StyleTransformer
 
-   Bases: :py:obj:`pydom.context.transformers.PropertyTransformer`
-
-
-   Helper class that provides a standard way to create an ABC using
-   inheritance.
+   Bases: :py:obj:`pydom.rendering.transformers.PropertyTransformer`
 
 
    .. py:method:: match(_, value)
