@@ -16,6 +16,6 @@ Module Contents
 ---------------
 
 .. py:data:: version
-   :value: '0.3.1'
+   :value: '0.4.0'
 
 

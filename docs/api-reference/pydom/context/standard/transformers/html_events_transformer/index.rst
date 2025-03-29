@@ -20,6 +20,10 @@ Module Contents
    Bases: :py:obj:`pydom.rendering.transformers.PropertyTransformer`
 
 
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+
    .. py:method:: match(prop_name, prop_value) -> bool
 
 

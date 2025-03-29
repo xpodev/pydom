@@ -62,16 +62,15 @@ More information about the default page component can be found :ref:`here <page>
 
     # page.py    
 
-    from pydom import Link
+    from pydom import Script
     from pydom.page import Page
 
     class AppPage(Page):
       def head(self):
         return (
           *super().head(),
-          Link(
-            rel="stylesheet",
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          Script(
+            src="https://cdn.tailwindcss.com/",
           )
         )
 
@@ -94,11 +93,13 @@ Lastly, create the ``FastAPI`` app and add an endpoint that will render the page
     async def read_root():
         return render(
             AppPage(
-                Div(classes="container mt-5")(
-                    Div(classes="text-center p-4 rounded")(
-                        Div(classes="display-4")("Hello, World!"),
-                        P(classes="lead")("Welcome to PyDOM"),
-                    )
+                Div(classes="text-center p-4 rounded")(
+                    Div(classes="text-4xl")(
+                        "Hello, World!"
+                    ),
+                    P(classes="text-lg text-gray-600")(
+                        "Welcome to PyDOM"
+                    ),
                 )
             )
         )

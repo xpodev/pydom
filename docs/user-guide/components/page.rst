@@ -31,7 +31,7 @@ Usage
 
 The page component can be used to create a new page by passing the following properties:
 
-- ``title``: The page's title
+- ``title``: The page's title - if not provided, the tag will not be rendered
 - ``html_props``: The props to insert inside the ``html`` tag
 - ``head_props``: The props to insert inside the ``head`` tag
 - ``body_props``: The props to insert inside the ``body`` tag
@@ -45,12 +45,12 @@ The page component can be used to create a new page by passing the following pro
 
     def my_awesome_page():
         return Page(title="My awesome page")(
-            Div(classes="container mt-5")(
-              Div(classes="text-center p-4 rounded")(
-                Div(classes="h-1")(
+            Div(classes="mx-auto mt-5")(
+              Div(classes="text-center")(
+                Div(classes="text-4xl font-bold")(
                   "Awesome page"
                 ),
-                P(classes="lead")(
+                P(classes="text-lg")(
                   "Welcome to PyDOM"
                 )
               )
@@ -66,7 +66,7 @@ You can create custom pages by extending the page component and overriding the d
 .. code-block:: python
     :caption: Creating a custom page component
 
-    from pydom import Div, Link
+    from pydom import Div, Script
     from pydom.page import Page
 
 
@@ -74,9 +74,8 @@ You can create custom pages by extending the page component and overriding the d
         def head(self):
             return (
                 *super().head(), # Include the default head components
-                Link(
-                  rel="stylesheet",
-                  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+                Script(
+                  src="https://cdn.tailwindcss.com"
                 )
             )
 
@@ -90,12 +89,12 @@ You can create custom pages by extending the page component and overriding the d
 
     def my_awesome_page():
         return MyPage(title="My awesome page")(
-            Div(classes="container mt-5")(
-              Div(classes="text-center p-4 rounded")(
-                Div(classes="h-1")(
+            Div(classes="mx-auto mt-5")(
+              Div(classes="text-center")(
+                Div(classes="text-4xl font-bold")(
                   "Awesome page"
                 ),
-                P(classes="lead")(
+                P(classes="text-lg")(
                   "Welcome to PyDOM"
                 )
               )

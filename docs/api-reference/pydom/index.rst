@@ -1684,6 +1684,6 @@ Package Contents
                  render(element: Union[pydom.types.Renderable, pydom.types.Primitive], *, pretty: bool = False, tab_indent: int = 1, context: Optional[pydom.context.Context] = None, **render_state_data) -> str
 
 .. py:data:: __version__
-   :value: '0.3.1'
+   :value: '0.4.0'
 
 
