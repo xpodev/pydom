@@ -26,7 +26,8 @@ jobs:
       - name: Bump version
         run: |
           echo "Bumping version..."
-          echo "version = \"${{ github.event.release.tag_name }}\"\n" > src/pydom/version.py
+          echo "version = \"${{ github.event.release.tag_name }}\"" > src/pydom/version.py
+          echo "" >> src/pydom/version.py
           echo "Version bumped to ${{ github.event.release.tag_name }}"
 
       - name: Commit version bump
