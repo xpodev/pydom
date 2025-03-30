@@ -324,6 +324,17 @@ Package Contents
    Bases: :py:obj:`pydom.types.html.html_element_props.HTMLElementProps`
 
 
+   dict() -> new empty dictionary
+   dict(mapping) -> new dictionary initialized from a mapping object's
+       (key, value) pairs
+   dict(iterable) -> new dictionary initialized as if via:
+       d = {}
+       for k, v in iterable:
+           d[k] = v
+   dict(**kwargs) -> new dictionary initialized with the name=value pairs
+       in the keyword argument list.  For example:  dict(one=1, two=2)
+
+
    .. py:attribute:: download
       :type:  Optional[str]
 
@@ -359,6 +370,17 @@ Package Contents
 .. py:class:: HTMLAreaElement
 
    Bases: :py:obj:`pydom.types.html.html_element_props.HTMLElementProps`
+
+
+   dict() -> new empty dictionary
+   dict(mapping) -> new dictionary initialized from a mapping object's
+       (key, value) pairs
+   dict(iterable) -> new dictionary initialized as if via:
+       d = {}
+       for k, v in iterable:
+           d[k] = v
+   dict(**kwargs) -> new dictionary initialized with the name=value pairs
+       in the keyword argument list.  For example:  dict(one=1, two=2)
 
 
    .. py:attribute:: alt
@@ -406,6 +428,17 @@ Package Contents
    Bases: :py:obj:`pydom.types.html.html_element_props.HTMLElementProps`
 
 
+   dict() -> new empty dictionary
+   dict(mapping) -> new dictionary initialized from a mapping object's
+       (key, value) pairs
+   dict(iterable) -> new dictionary initialized as if via:
+       d = {}
+       for k, v in iterable:
+           d[k] = v
+   dict(**kwargs) -> new dictionary initialized with the name=value pairs
+       in the keyword argument list.  For example:  dict(one=1, two=2)
+
+
    .. py:attribute:: auto_play
       :type:  Optional[str]
 
@@ -435,6 +468,17 @@ Package Contents
    Bases: :py:obj:`pydom.types.html.html_element_props.HTMLElementProps`
 
 
+   dict() -> new empty dictionary
+   dict(mapping) -> new dictionary initialized from a mapping object's
+       (key, value) pairs
+   dict(iterable) -> new dictionary initialized as if via:
+       d = {}
+       for k, v in iterable:
+           d[k] = v
+   dict(**kwargs) -> new dictionary initialized with the name=value pairs
+       in the keyword argument list.  For example:  dict(one=1, two=2)
+
+
    .. py:attribute:: href
       :type:  Optional[str]
 
@@ -446,6 +490,17 @@ Package Contents
 .. py:class:: HTMLBodyElement
 
    Bases: :py:obj:`pydom.types.html.html_element_props.HTMLElementProps`
+
+
+   dict() -> new empty dictionary
+   dict(mapping) -> new dictionary initialized from a mapping object's
+       (key, value) pairs
+   dict(iterable) -> new dictionary initialized as if via:
+       d = {}
+       for k, v in iterable:
+           d[k] = v
+   dict(**kwargs) -> new dictionary initialized with the name=value pairs
+       in the keyword argument list.  For example:  dict(one=1, two=2)
 
 
    .. py:attribute:: alink
@@ -621,9 +676,31 @@ Package Contents
    Bases: :py:obj:`pydom.types.html.html_element_props.HTMLElementProps`
 
 
+   dict() -> new empty dictionary
+   dict(mapping) -> new dictionary initialized from a mapping object's
+       (key, value) pairs
+   dict(iterable) -> new dictionary initialized as if via:
+       d = {}
+       for k, v in iterable:
+           d[k] = v
+   dict(**kwargs) -> new dictionary initialized with the name=value pairs
+       in the keyword argument list.  For example:  dict(one=1, two=2)
+
+
 .. py:class:: HTMLButtonElement
 
    Bases: :py:obj:`pydom.types.html.html_element_props.HTMLElementProps`
+
+
+   dict() -> new empty dictionary
+   dict(mapping) -> new dictionary initialized from a mapping object's
+       (key, value) pairs
+   dict(iterable) -> new dictionary initialized as if via:
+       d = {}
+       for k, v in iterable:
+           d[k] = v
+   dict(**kwargs) -> new dictionary initialized with the name=value pairs
+       in the keyword argument list.  For example:  dict(one=1, two=2)
 
 
    .. py:attribute:: auto_focus
@@ -675,6 +752,17 @@ Package Contents
    Bases: :py:obj:`pydom.types.html.html_element_props.HTMLElementProps`
 
 
+   dict() -> new empty dictionary
+   dict(mapping) -> new dictionary initialized from a mapping object's
+       (key, value) pairs
+   dict(iterable) -> new dictionary initialized as if via:
+       d = {}
+       for k, v in iterable:
+           d[k] = v
+   dict(**kwargs) -> new dictionary initialized with the name=value pairs
+       in the keyword argument list.  For example:  dict(one=1, two=2)
+
+
    .. py:attribute:: height
       :type:  Optional[str]
 
@@ -688,6 +776,17 @@ Package Contents
    Bases: :py:obj:`pydom.types.html.html_element_props.HTMLElementProps`
 
 
+   dict() -> new empty dictionary
+   dict(mapping) -> new dictionary initialized from a mapping object's
+       (key, value) pairs
+   dict(iterable) -> new dictionary initialized as if via:
+       d = {}
+       for k, v in iterable:
+           d[k] = v
+   dict(**kwargs) -> new dictionary initialized with the name=value pairs
+       in the keyword argument list.  For example:  dict(one=1, two=2)
+
+
    .. py:attribute:: charset
       :type:  Optional[str]
 
@@ -695,6 +794,17 @@ Package Contents
 .. py:class:: HTMLDataElement
 
    Bases: :py:obj:`pydom.types.html.html_element_props.HTMLElementProps`
+
+
+   dict() -> new empty dictionary
+   dict(mapping) -> new dictionary initialized from a mapping object's
+       (key, value) pairs
+   dict(iterable) -> new dictionary initialized as if via:
+       d = {}
+       for k, v in iterable:
+           d[k] = v
+   dict(**kwargs) -> new dictionary initialized with the name=value pairs
+       in the keyword argument list.  For example:  dict(one=1, two=2)
 
 
    .. py:attribute:: value
@@ -706,9 +816,31 @@ Package Contents
    Bases: :py:obj:`pydom.types.html.html_element_props.HTMLElementProps`
 
 
+   dict() -> new empty dictionary
+   dict(mapping) -> new dictionary initialized from a mapping object's
+       (key, value) pairs
+   dict(iterable) -> new dictionary initialized as if via:
+       d = {}
+       for k, v in iterable:
+           d[k] = v
+   dict(**kwargs) -> new dictionary initialized with the name=value pairs
+       in the keyword argument list.  For example:  dict(one=1, two=2)
+
+
 .. py:class:: HTMLDetailsElement
 
    Bases: :py:obj:`pydom.types.html.html_element_props.HTMLElementProps`
+
+
+   dict() -> new empty dictionary
+   dict(mapping) -> new dictionary initialized from a mapping object's
+       (key, value) pairs
+   dict(iterable) -> new dictionary initialized as if via:
+       d = {}
+       for k, v in iterable:
+           d[k] = v
+   dict(**kwargs) -> new dictionary initialized with the name=value pairs
+       in the keyword argument list.  For example:  dict(one=1, two=2)
 
 
    .. py:attribute:: open
@@ -720,6 +852,17 @@ Package Contents
    Bases: :py:obj:`pydom.types.html.html_element_props.HTMLElementProps`
 
 
+   dict() -> new empty dictionary
+   dict(mapping) -> new dictionary initialized from a mapping object's
+       (key, value) pairs
+   dict(iterable) -> new dictionary initialized as if via:
+       d = {}
+       for k, v in iterable:
+           d[k] = v
+   dict(**kwargs) -> new dictionary initialized with the name=value pairs
+       in the keyword argument list.  For example:  dict(one=1, two=2)
+
+
    .. py:attribute:: open
       :type:  Optional[str]
 
@@ -729,9 +872,31 @@ Package Contents
    Bases: :py:obj:`pydom.types.html.html_element_props.HTMLElementProps`
 
 
+   dict() -> new empty dictionary
+   dict(mapping) -> new dictionary initialized from a mapping object's
+       (key, value) pairs
+   dict(iterable) -> new dictionary initialized as if via:
+       d = {}
+       for k, v in iterable:
+           d[k] = v
+   dict(**kwargs) -> new dictionary initialized with the name=value pairs
+       in the keyword argument list.  For example:  dict(one=1, two=2)
+
+
 .. py:class:: HTMLDocumentMetaElement
 
    Bases: :py:obj:`pydom.types.html.html_element_props.HTMLElementProps`
+
+
+   dict() -> new empty dictionary
+   dict(mapping) -> new dictionary initialized from a mapping object's
+       (key, value) pairs
+   dict(iterable) -> new dictionary initialized as if via:
+       d = {}
+       for k, v in iterable:
+           d[k] = v
+   dict(**kwargs) -> new dictionary initialized with the name=value pairs
+       in the keyword argument list.  For example:  dict(one=1, two=2)
 
 
    .. py:attribute:: name
@@ -1903,7 +2068,7 @@ Package Contents
 
 
    .. py:attribute:: selected
-      :type:  Optional[str]
+      :type:  Optional[bool]
 
 
    .. py:attribute:: value

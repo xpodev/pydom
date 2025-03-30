@@ -131,7 +131,7 @@ checking the ``HX-Request`` header:
 
 .. code:: python
 
-   from pydom import d
+   import pydom as d
    from pydom.page import Page
 
    class MyPage(Page):

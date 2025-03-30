@@ -52,3 +52,21 @@ This is done by setting the ``render`` function as the encoder for the ``Compone
 This will allow you to return PyDOM components directly from your FastAPI routes without having to call the ``render`` function.
 
 Like before, make sure the response class is set to ``HTMLResponse``.
+
+.. code-block:: python
+
+    from fastapi import FastAPI
+    from fastapi.responses import HTMLResponse
+    from pydom import Page, Div
+
+    app = FastAPI()
+
+    @app.get("/", response_class=HTMLResponse)
+    async def read_root():
+        return Page(Div("Hello, World!"))
+
+
+.. note::
+    Returning a PyDOM component that is decorated with ``dataclass`` will not work
+    as expected. This is because FastAPI will try to serialize the component
+    as a JSON object before the PyDOM encoder is called.

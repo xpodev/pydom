@@ -45,13 +45,12 @@ More information about the default page component can be found [here](#page).
 from pydom import Link, Page
 
 class AppPage(Page):
-    def head(self):
+      def head(self):
         return (
-            *super().head(),
-            Link(
-                rel="stylesheet",
-                href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-            )
+          *super().head(),
+          Script(
+            src="https://cdn.tailwindcss.com/",
+          )
         )
 ```
 
@@ -74,11 +73,13 @@ app = FastAPI()
 async def read_root():
     return render(
         AppPage(
-            Div(classes="container mt-5")(
-                Div(classes="text-center p-4 rounded")(
-                    Div(classes="display-4")("Hello, World!"),
-                    P(classes="lead")("Welcome to PyDOM"),
-                )
+            Div(classes="text-center p-4 rounded")(
+                Div(classes="text-4xl")(
+                    "Hello, World!"
+                ),
+                P(classes="text-lg text-gray-600")(
+                    "Welcome to PyDOM"
+                ),
             )
         )
     )
