@@ -2,8 +2,14 @@ from .component import Component
 from .context.context import Context, set_default_context
 from .html import *
 from .page import Page
-from .svg import *
 from .rendering import render
+from .styling import StyleSheet
+from .svg import *
+from .types import (
+    ChildrenType,
+    ChildType,
+    Renderable,
+)
 from .version import version as __version__
 
 set_default_context(Context.standard())
@@ -144,11 +150,14 @@ __all__ = [
     "TSpan",
     "Use",
     "View",
-
     # PyDOM
+    "ChildrenType",
+    "ChildType",
     "Component",
     "Context",
     "render",
+    "Renderable",
     "Page",
+    "StyleSheet",
     "__version__",
 ]
