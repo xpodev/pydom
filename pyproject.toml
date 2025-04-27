@@ -21,7 +21,7 @@ classifiers = [
 dynamic = ["dependencies", "version"]
 
 [project.urls]
-Homepage = "https://github.com/xpodev/pydom"
+Homepage = "https://pydom.dev"
 Issues = "https://github.com/xpodev/pydom/issues"
 
 [build-system]
