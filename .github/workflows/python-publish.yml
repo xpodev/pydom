@@ -43,6 +43,7 @@ jobs:
 
       - name: Switch to version bump branch
         run: git checkout version-bump-${{ github.event.release.tag_name }}
+
       - name: Build package
         run: python -m build
 
