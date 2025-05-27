@@ -37,7 +37,7 @@ PyDOM provides a default page component that is the minimal structure for a web 
 
 The page can be customized by extending the default page component and overriding the `head` and the `body` methods.
 
-More information about the default page component can be found [here](#page).
+More information about the default page component can be found [here](https://pydom.dev/en/latest/user-guide/components/page.html).
 
 ```python
 # app_page.py
