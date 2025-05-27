@@ -11,7 +11,7 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    
+
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python
@@ -41,6 +41,8 @@ jobs:
           commit-message: "Bump version to ${{ github.event.release.tag_name }}"
           delete-branch: true
 
+      - name: Switch to version bump branch
+        run: git checkout version-bump-${{ github.event.release.tag_name }}
       - name: Build package
         run: python -m build
 
