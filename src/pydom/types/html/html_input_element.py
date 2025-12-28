@@ -1,15 +1,44 @@
-from typing import Optional
+from typing import Literal, Optional
 from pydom.types.html.html_element_props import HTMLElementProps
+
+
+InputType = Literal[
+    "button",
+    "checkbox",
+    "color",
+    "date",
+    "datetime-local",
+    "email",
+    "file",
+    "hidden",
+    "image",
+    "month",
+    "number",
+    "password",
+    "radio",
+    "range",
+    "reset",
+    "search",
+    "submit",
+    "tel",
+    "text",
+    "time",
+    "url",
+    "week",
+]
 
 
 class HTMLInputElement(HTMLElementProps, total=False):
     accept: Optional[str]
+    alpha: Optional[bool]
     alt: Optional[str]
+    auto_capitalize: Optional[str]
     auto_complete: Optional[str]
-    auto_focus: Optional[str]
+    auto_focus: Optional[bool]
     capture: Optional[str]
-    checked: Optional[str]
-    cross_origin: Optional[str]
+    checked: Optional[bool]
+    color_space: Optional[str]
+    dirname: Optional[str]
     disabled: Optional[bool]
     form: Optional[str]
     form_action: Optional[str]
@@ -27,14 +56,13 @@ class HTMLInputElement(HTMLElementProps, total=False):
     name: Optional[str]
     pattern: Optional[str]
     placeholder: Optional[str]
-    readonly: Optional[str]
-    required: Optional[str]
-    selection_direction: Optional[str]
-    selection_end: Optional[str]
-    selection_start: Optional[str]
+    popover_target: Optional[str]
+    popover_target_action: Optional[str]
+    readonly: Optional[bool]
+    required: Optional[bool]
     size: Optional[str]
     src: Optional[str]
     step: Optional[str]
-    type: Optional[str]
+    type: Optional[InputType]
     value: Optional[str]
     width: Optional[str]
