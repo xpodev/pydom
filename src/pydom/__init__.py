@@ -10,6 +10,7 @@ from .types import (
     ChildType,
     Renderable,
 )
+from .unicode_chars import *
 from .version import version as __version__
 
 set_default_context(Context.standard())
@@ -160,4 +161,11 @@ __all__ = [
     "Page",
     "StyleSheet",
     "__version__",
+
+    # Unicode characters
+    "nbsp",
+    "thinsp",
+    "ZeroWidthSpace",
+    "emsp",
+    "hairsp",
 ]
