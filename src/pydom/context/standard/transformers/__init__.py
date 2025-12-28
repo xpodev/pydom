@@ -3,7 +3,7 @@ from .dash_transformer import DashTransformer
 from .falsy_transformer import FalsyTransformer
 from .html_events_transformer import HTMLEventsTransformer
 from .inner_html_transformer import InnerHTMLTransformer
-from .simple_transformer import SimpleTransformer
+from .simple_transformers import SimpleTransformer, SimpleInputTransformer
 from .style_transformer import StyleTransformer
 
 __all__ = [
@@ -13,5 +13,6 @@ __all__ = [
     "HTMLEventsTransformer",
     "InnerHTMLTransformer",
     "SimpleTransformer",
+    "SimpleInputTransformer",
     "StyleTransformer",
 ]
