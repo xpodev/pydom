@@ -1,4 +1,4 @@
-from typing import TYPE_CHECKING, Dict, Iterable, Union, Literal, Optional
+from typing import TYPE_CHECKING, Any, Dict, Iterable, Union, Literal, Optional
 
 from typing_extensions import TypedDict
 
@@ -6,7 +6,7 @@ if TYPE_CHECKING:
     from pydom.styling import StyleSheet
 
 
-class HTMLElement(TypedDict, total=False, closed=False):
+class HTMLElement(TypedDict, total=False, extra_items=Any):
     access_key: Optional[str]
     auto_capitalize: Optional[str]
     classes: Optional[Union[str, Iterable[str]]]

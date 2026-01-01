@@ -2,7 +2,7 @@ from typing import Optional
 from pydom.types.html.html_element_props import HTMLElementProps
 
 
-class HTMLBodyElement(HTMLElementProps, total=False, closed=False):
+class HTMLBodyElement(HTMLElementProps, total=False):
     alink: Optional[str]
     """
     **@deprecated** Use the CSS color property in conjunction with the :active pseudo-class instead
