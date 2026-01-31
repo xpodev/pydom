@@ -1,5 +1,5 @@
 from abc import abstractmethod, ABC
-from typing import Tuple
+from typing import overload, Iterable, Tuple
 
 from .types.rendering import RenderResult, ChildType
 
@@ -7,8 +7,13 @@ from .types.rendering import RenderResult, ChildType
 class Component(ABC):
     children: Tuple["ChildType", ...]
 
-    def __init__(self, *children: "ChildType") -> None:
-        self.children = children
+    @overload
+    def __init__(self, *children: "ChildType") -> None: ...
+    @overload
+    def __init__(self, *, children: Iterable["ChildType"]) -> None: ...
+
+    def __init__(self, *args, children=None) -> None:
+        self.children = tuple(children) if children is not None else args
 
     @abstractmethod
     def render(self, *_, **kwargs) -> "RenderResult": ...
